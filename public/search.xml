@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+  
+    
+    <entry>
+      <title>pod是什么</title>
+      <link href="/2021/08/22/pod-shi-shi-me/"/>
+      <url>/2021/08/22/pod-shi-shi-me/</url>
+      
+        <content type="html"><![CDATA[<h3 id="什么是Podfile"><a href="#什么是Podfile" class="headerlink" title="什么是Podfile"></a>什么是Podfile</h3><p>CocoaPods是用ruby实现的，因此Podfile文件的语法就是ruby的语法。<br>podfile是一个说明文件，用以描述管理一个或者多个Xcode project的target的依赖库。这个文件应该且必须被命名为Podfile。<br>Podfile可以非常简单,下面的例子增加了Alamofire依赖库到单个target:</p><pre class="line-numbers language-none"><code class="language-none">target &#39;MyApp&#39; do     use_frameworks!     pod &#39;Alamofire&#39;, &#39;~&gt; 3.0&#39;end<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre><p>下面是一个更复杂的例子，Podfile链接了app和它的测试bundle: </p><pre class="line-numbers language-none"><code class="language-none">source &#39;https:&#x2F;&#x2F;github.com&#x2F;CocoaPods&#x2F;Specs.git&#39;source &#39;https:&#x2F;&#x2F;github.com&#x2F;Artsy&#x2F;Specs.git&#39;platform :ios, &#39;9.0&#39;inhibit_all_warnings!target &#39;MyApp&#39; do    pod &#39;GoogleAnalytics&#39;, &#39;~&gt; 3.1&#39;    # Has its own copy of OCMock     # and has access to GoogleAnalytics via the app     # that hosts the test target    target &#39;MyAppTests&#39; do         inherit! :search_paths         pod &#39;OCMock&#39;, &#39;~&gt; 2.0.1&#39;     endendpost_install do |installer|    installer.pods_project.targets.each do |target|         puts target.name     endend<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>如果你希望多个target共享同一个pods，那么可以用关键字abstract_target：</p><pre class="line-numbers language-none"><code class="language-none"># There are no targets called &quot;Shows&quot; in any Xcode projectsabstract_target &#39;Shows&#39; do     pod &#39;ShowsKit&#39;     pod &#39;Fabric&#39;    # Has its own copy of ShowsKit + ShowWebAuth    target &#39;ShowsiOS&#39; do         pod &#39;ShowWebAuth&#39;     end    # Has its own copy of ShowsKit + ShowTVAuth     target &#39;ShowsTV&#39; do         pod &#39;ShowTVAuth&#39;     endend<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>Podfile中自带一个隐藏的、默认的abstract target，所以你也可以用如下的方式达到上面例子的同样效果：</p><pre class="line-numbers language-none"><code class="language-none">pod &#39;ShowsKit&#39;pod &#39;Fabric&#39;# Has its own copy of ShowsKit + ShowWebAuthtarget &#39;ShowsiOS&#39; do     pod &#39;ShowWebAuth&#39;end# Has its own copy of ShowsKit + ShowTVAuthtarget &#39;ShowsTV&#39; do     pod &#39;ShowTVAuth&#39;end<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><h3 id="指定pod版本"><a href="#指定pod版本" class="headerlink" title="指定pod版本"></a>指定pod版本</h3><p>当开始一个项目,你可能会想要使用最新版本的pod依赖库。 如果是这种情况,只需忽略版本要求。<br><code>pod &#39;SSZipArchive&#39;</code><br>稍后在项目您可能想要使用特定版本的pod依赖库,在这种情况下,您可以指定版本号<br><code>pod &#39;Objection&#39;, &#39;0.9&#39;</code><br>除了没有版本,或特定的一个,也可以使用逻辑运算符: </p><p>‘&gt; 0.1’ 高于0.1的任何版本<br>‘&gt;= 0.1’ 版本0.1或更高版本<br>‘&lt; 0.1’ 低于0.1的任何版本<br>‘&lt;= 0.1’ 版本0.1或更低的版本<br>除了逻辑运算符，还有一种运算符：</p><p>‘<del>&gt; 0.1.2’ 版本0.1.2和0.2版本之间的任意版本,不包括0.2和比0.2更高的版本<br>‘</del>&gt; 0.1’ 版本0.1和版本1.0之间的任意版本,不包括1.0和比1.0更高的版本<br>‘~&gt; 0’ 版本0或比版本0更高的版本,这基本上和不指定版本号的效果是一样的。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> ios </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> ios </tag>
+            
+            <tag> cocoapods </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Hello World</title>
+      <link href="/2021/08/22/hello-world/"/>
+      <url>/2021/08/22/hello-world/</url>
+      
+        <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo new <span class="token string">"My New Post"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo server<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo generate<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo deploy<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+  
+  
+</search>
