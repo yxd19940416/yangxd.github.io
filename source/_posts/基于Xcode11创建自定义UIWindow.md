@@ -1,9 +1,23 @@
+---
+title: 基于Xcode11创建自定义UIWindow
+date: 2021-10-21 20:07:22
+top: false
+cover: false
+password:
+toc: true
+mathjax: true
+summary: 基于Xcode11创建自定义UIWindow
+tags: 
+    - ios
+    - objective-c
+categories: ios
+---
 # 基于Xcode11创建自定义UIWindow
 
 最近更新Xcode 11.4，在创建项目之后发现多了苹果分屏技术，新增了SceneDelegate这个文件，另外AppDelegate文件结构也发生了变化，给人一种似曾相识又不同的感觉，总的来说之前熟悉的Window不再由AppDelegate管理，而是交给了SceneDelegate。
 
 如下图即可看出目录结构和info配置变化：
-![](media/16277871609165/16277872068447.png)
+![](16277872068447.png)
 
 简要介绍Application Scene Manifest分屏配置：
 ```
@@ -47,7 +61,7 @@ Storyboard Name --- Storyboard名称
 ```
 效果图：
 
-![-w308](media/16277871609165/16277872853169.png)
+![-w308](16277872853169.png)
 
 
 二、针对iOS13系统以下：
@@ -78,7 +92,7 @@ e. 修改AppDelegate启动方法：
 ```
 效果图：
 
-![-w308](media/16277871609165/16277873129770.png)
+![-w308](16277873129770.png)
 
 
 至此，我们又回到了曾经熟悉的开发场景。
