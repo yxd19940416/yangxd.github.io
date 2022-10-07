@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+  
+    
+    <entry>
+      <title>基于Xcode11创建自定义UIWindow</title>
+      <link href="/2021/10/21/ji-yu-xcode11-chuang-jian-zi-ding-yi-uiwindow/"/>
+      <url>/2021/10/21/ji-yu-xcode11-chuang-jian-zi-ding-yi-uiwindow/</url>
+      
+        <content type="html"><![CDATA[<h1 id="基于Xcode11创建自定义UIWindow"><a href="#基于Xcode11创建自定义UIWindow" class="headerlink" title="基于Xcode11创建自定义UIWindow"></a>基于Xcode11创建自定义UIWindow</h1><p>最近更新Xcode 11.4，在创建项目之后发现多了苹果分屏技术，新增了SceneDelegate这个文件，另外AppDelegate文件结构也发生了变化，给人一种似曾相识又不同的感觉，总的来说之前熟悉的Window不再由AppDelegate管理，而是交给了SceneDelegate。</p><p>如下图即可看出目录结构和info配置变化：<br><img src="/2021/10/21/ji-yu-xcode11-chuang-jian-zi-ding-yi-uiwindow/16277872068447.png"></p><p>简要介绍Application Scene Manifest分屏配置：</p><pre class="line-numbers language-none"><code class="language-none">enable Multipe Windows --- 是否允许分屏Scene Configuratiton --- 屏幕配置项Application Session Role --- 程序屏幕配置规则（为每个Scene指定规则）Configuration Name --- 配置名称Delegate Class Name --- 代理类名称Storyboard Name --- Storyboard名称<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>解读如下：</p><p>创建项目工程时，系统默认为我们创建了一个名为Default Configuratiton 的默认配置，代理类名称为SceneDelegate,入口名为Main的Storyboard，代码如下：</p><pre class="line-numbers language-none"><code class="language-none">- (UISceneConfiguration *)application:(UIApplication *)application configurationForConnectingSceneSession:(UISceneSession *)connectingSceneSession options:(UISceneConnectionOptions *)options &#123;    &#x2F;&#x2F; Called when a new scene session is being created.    &#x2F;&#x2F; Use this method to select a configuration to create the new scene with.    return [[UISceneConfiguration alloc] initWithName:@&quot;Default Configuration&quot; sessionRole:connectingSceneSession.role];&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>回到主题，针对这种情况，如果创建我们熟悉的自定义Window呢？</p><p>一、针对iOS13系统及以上：保留SceneDelegate，需要修改SceneDelegate里面的代码即可；</p><pre class="line-numbers language-none"><code class="language-none">- (void)scene:(UIScene *)scene willConnectToSession:(UISceneSession *)session options:(UISceneConnectionOptions *)connectionOptions &#123;    &#x2F;&#x2F; Use this method to optionally configure and attach the UIWindow &#96;window&#96; to the provided UIWindowScene &#96;scene&#96;.    &#x2F;&#x2F; If using a storyboard, the &#96;window&#96; property will automatically be initialized and attached to the scene.    &#x2F;&#x2F; This delegate does not imply the connecting scene or session are new (see &#96;application:configurationForConnectingSceneSession&#96; instead).            if (@available(ios 13, *)) &#123;        if (scene) &#123;            self.window &#x3D; [[UIWindow alloc] initWithWindowScene:(UIWindowScene *)scene];            self.window.frame &#x3D; CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);            UINavigationController *nav &#x3D; [[UINavigationController alloc] initWithRootViewController:[[ViewController alloc]init]];            self.window.rootViewController &#x3D; nav;            [self.window makeKeyAndVisible];        &#125;    &#125;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>效果图：</p><p><img src="/2021/10/21/ji-yu-xcode11-chuang-jian-zi-ding-yi-uiwindow/16277872853169.png" alt="-w308"></p><p>二、针对iOS13系统以下：</p><p>a. 删除info.plist文件中的Application Scene Manifest选项;</p><p>b. 删除SceneDelegate文件;</p><p>c. 删除AppDelegate里面的UISceneSession lifecycle方法;</p><p>d. AppDelegate头文件添加window属性;</p><p><code>@property (strong, nonatomic) UIWindow *window;</code><br>e. 修改AppDelegate启动方法：</p><pre class="line-numbers language-none"><code class="language-none">- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions &#123;    &#x2F;&#x2F; Override point for customization after application launch.    self.window &#x3D; [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];    UIViewController *vc &#x3D; [[UIViewController alloc]init];    vc.view.backgroundColor &#x3D; [UIColor greenColor];    UINavigationController *nav &#x3D; [[UINavigationController alloc] initWithRootViewController:vc];    self.window.rootViewController &#x3D; nav;    [self.window makeKeyAndVisible];    return YES;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>效果图：</p><p><img src="/2021/10/21/ji-yu-xcode11-chuang-jian-zi-ding-yi-uiwindow/16277873129770.png" alt="-w308"></p><p>至此，我们又回到了曾经熟悉的开发场景。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> ios </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> ios </tag>
+            
+            <tag> objective-c </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+  
+  
+</search>

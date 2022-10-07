@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>杨晓东&amp;Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="一点一滴每一天">
+<meta property="og:type" content="website">
+<meta property="og:title" content="杨晓东&amp;Blog">
+<meta property="og:url" content="https://yangxiaodg.github.io/index.html">
+<meta property="og:site_name" content="杨晓东&amp;Blog">
+<meta property="og:description" content="一点一滴每一天">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="yangxiaodg">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="杨晓东&amp;Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">杨晓东&amp;Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://yangxiaodg.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-基于Xcode11创建自定义UIWindow" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/10/21/ji-yu-xcode11-chuang-jian-zi-ding-yi-uiwindow/" class="article-date">
+  <time datetime="2021-10-21T12:07:22.000Z" itemprop="datePublished">2021-10-21</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/ios/">ios</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/10/21/ji-yu-xcode11-chuang-jian-zi-ding-yi-uiwindow/">基于Xcode11创建自定义UIWindow</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="基于Xcode11创建自定义UIWindow"><a href="#基于Xcode11创建自定义UIWindow" class="headerlink" title="基于Xcode11创建自定义UIWindow"></a>基于Xcode11创建自定义UIWindow</h1><p>最近更新Xcode 11.4，在创建项目之后发现多了苹果分屏技术，新增了SceneDelegate这个文件，另外AppDelegate文件结构也发生了变化，给人一种似曾相识又不同的感觉，总的来说之前熟悉的Window不再由AppDelegate管理，而是交给了SceneDelegate。</p>
+<p>如下图即可看出目录结构和info配置变化：<br><img src="/2021/10/21/ji-yu-xcode11-chuang-jian-zi-ding-yi-uiwindow/16277872068447.png"></p>
+<p>简要介绍Application Scene Manifest分屏配置：</p>
+<pre class="line-numbers language-none"><code class="language-none">enable Multipe Windows --- 是否允许分屏
+Scene Configuratiton --- 屏幕配置项
+Application Session Role --- 程序屏幕配置规则（为每个Scene指定规则）
+Configuration Name --- 配置名称
+Delegate Class Name --- 代理类名称
+Storyboard Name --- Storyboard名称<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>解读如下：</p>
+<p>创建项目工程时，系统默认为我们创建了一个名为Default Configuratiton 的默认配置，代理类名称为SceneDelegate,入口名为Main的Storyboard，代码如下：</p>
+<pre class="line-numbers language-none"><code class="language-none">- (UISceneConfiguration *)application:(UIApplication *)application configurationForConnectingSceneSession:(UISceneSession *)connectingSceneSession options:(UISceneConnectionOptions *)options &#123;
+    &#x2F;&#x2F; Called when a new scene session is being created.
+    &#x2F;&#x2F; Use this method to select a configuration to create the new scene with.
+    return [[UISceneConfiguration alloc] initWithName:@&quot;Default Configuration&quot; sessionRole:connectingSceneSession.role];
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>回到主题，针对这种情况，如果创建我们熟悉的自定义Window呢？</p>
+<p>一、针对iOS13系统及以上：保留SceneDelegate，需要修改SceneDelegate里面的代码即可；</p>
+<pre class="line-numbers language-none"><code class="language-none">- (void)scene:(UIScene *)scene willConnectToSession:(UISceneSession *)session options:(UISceneConnectionOptions *)connectionOptions &#123;
+    &#x2F;&#x2F; Use this method to optionally configure and attach the UIWindow &#96;window&#96; to the provided UIWindowScene &#96;scene&#96;.
+    &#x2F;&#x2F; If using a storyboard, the &#96;window&#96; property will automatically be initialized and attached to the scene.
+    &#x2F;&#x2F; This delegate does not imply the connecting scene or session are new (see &#96;application:configurationForConnectingSceneSession&#96; instead).
+    
+    
+    if (@available(ios 13, *)) &#123;
+        if (scene) &#123;
+            self.window &#x3D; [[UIWindow alloc] initWithWindowScene:(UIWindowScene *)scene];
+            self.window.frame &#x3D; CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
+            UINavigationController *nav &#x3D; [[UINavigationController alloc] initWithRootViewController:[[ViewController alloc]init]];
+            self.window.rootViewController &#x3D; nav;
+            [self.window makeKeyAndVisible];
+        &#125;
+    &#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>效果图：</p>
+<p><img src="/2021/10/21/ji-yu-xcode11-chuang-jian-zi-ding-yi-uiwindow/16277872853169.png" alt="-w308"></p>
+<p>二、针对iOS13系统以下：</p>
+<p>a. 删除info.plist文件中的Application Scene Manifest选项;</p>
+<p>b. 删除SceneDelegate文件;</p>
+<p>c. 删除AppDelegate里面的UISceneSession lifecycle方法;</p>
+<p>d. AppDelegate头文件添加window属性;</p>
+<p><code>@property (strong, nonatomic) UIWindow *window;</code><br>e. 修改AppDelegate启动方法：</p>
+<pre class="line-numbers language-none"><code class="language-none">- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions &#123;
+    &#x2F;&#x2F; Override point for customization after application launch.
+    self.window &#x3D; [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    UIViewController *vc &#x3D; [[UIViewController alloc]init];
+    vc.view.backgroundColor &#x3D; [UIColor greenColor];
+    UINavigationController *nav &#x3D; [[UINavigationController alloc] initWithRootViewController:vc];
+    self.window.rootViewController &#x3D; nav;
+    [self.window makeKeyAndVisible];
+    return YES;
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>效果图：</p>
+<p><img src="/2021/10/21/ji-yu-xcode11-chuang-jian-zi-ding-yi-uiwindow/16277873129770.png" alt="-w308"></p>
+<p>至此，我们又回到了曾经熟悉的开发场景。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yangxiaodg.github.io/2021/10/21/ji-yu-xcode11-chuang-jian-zi-ding-yi-uiwindow/" data-id="cktu58c640000moxgdhm51qtb" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ios/" rel="tag">ios</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/objective-c/" rel="tag">objective-c</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/ios/">ios</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ios/" rel="tag">ios</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/objective-c/" rel="tag">objective-c</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ios/" style="font-size: 10px;">ios</a> <a href="/tags/objective-c/" style="font-size: 10px;">objective-c</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">十月 2021</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/10/21/ji-yu-xcode11-chuang-jian-zi-ding-yi-uiwindow/">基于Xcode11创建自定义UIWindow</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2022 yangxiaodg<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
