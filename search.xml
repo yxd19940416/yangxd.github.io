@@ -8,7 +8,7 @@
       <link href="/2022/10/07/ji-lu-xue-xi-she-ji-mo-shi-01-jian-dan-gong-han-he-gong-han-fang-fa/"/>
       <url>/2022/10/07/ji-lu-xue-xi-she-ji-mo-shi-01-jian-dan-gong-han-he-gong-han-fang-fa/</url>
       
-        <content type="html"><![CDATA[<h2 id="简单工厂"><a href="#简单工厂" class="headerlink" title="简单工厂"></a>简单工厂</h2><p>先看下定义<br>提供一个创建对象实例的功能，而无须关心其具体事项。被创建的类型可以是接口、抽象类，也可以是具体的类。</p><ol><li>为什么要有简单工厂？<br>简单工厂将对象创建细节封装到工厂类中，通过提供的api接口和factory工厂创建对象。面向接口编程，更为抽象，符合面向对象设计。</li></ol>]]></content>
+        <content type="html"><![CDATA[<h3 id="简单工厂"><a href="#简单工厂" class="headerlink" title="简单工厂"></a>简单工厂</h3><p><strong>先看下定义</strong><br><em>提供一个创建对象实例的功能，而无须关心其具体事项。被创建的类型可以是接口、抽象类，也可以是具体的类。</em></p><ol><li>为什么要有简单工厂？</li></ol><p>简单工厂将对象创建细节封装到工厂类中，通过提供的api接口和factory工厂创建对象。面向接口编程，更为抽象，符合面向对象设计。</p>]]></content>
       
       
       <categories>
