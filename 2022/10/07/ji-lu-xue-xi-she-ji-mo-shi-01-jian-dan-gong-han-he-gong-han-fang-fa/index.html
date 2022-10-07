@@ -5,16 +5,20 @@
   
 
   
-  <title>Category: ios | 杨晓东&amp;Blog</title>
+  <title>记录学习设计模式-01-简单工厂和工厂方法 | 杨晓东&amp;Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一点一滴每一天">
-<meta property="og:type" content="website">
-<meta property="og:title" content="杨晓东&amp;Blog">
-<meta property="og:url" content="https://yangxiaodg.github.io/categories/ios/index.html">
+  <meta name="description" content="简单工厂先看下定义提供一个创建对象实例的功能，而无须关心其具体事项。被创建的类型可以是接口、抽象类，也可以是具体的类。  为什么要有简单工厂？简单工厂将对象创建细节封装到工厂类中，通过提供的api接口和factory工厂创建对象。面向接口编程，更为抽象，符合面向对象设计。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="记录学习设计模式-01-简单工厂和工厂方法">
+<meta property="og:url" content="https://yangxiaodg.github.io/2022/10/07/ji-lu-xue-xi-she-ji-mo-shi-01-jian-dan-gong-han-he-gong-han-fang-fa/index.html">
 <meta property="og:site_name" content="杨晓东&amp;Blog">
-<meta property="og:description" content="一点一滴每一天">
+<meta property="og:description" content="简单工厂先看下定义提供一个创建对象实例的功能，而无须关心其具体事项。被创建的类型可以是接口、抽象类，也可以是具体的类。  为什么要有简单工厂？简单工厂将对象创建细节封装到工厂类中，通过提供的api接口和factory工厂创建对象。面向接口编程，更为抽象，符合面向对象设计。">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-10-07T10:44:18.000Z">
+<meta property="article:modified_time" content="2022-10-07T10:53:48.204Z">
 <meta property="article:author" content="yangxiaodg">
+<meta property="article:tag" content="设计模式">
+<meta property="article:tag" content="思考方式">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="杨晓东&amp;Blog" type="application/atom+xml">
@@ -62,40 +66,61 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2021/10/21/ji-yu-xcode11-chuang-jian-zi-ding-yi-uiwindow/" class="archive-article-date">
-  <time datetime="2021-10-21T12:07:22.000Z" itemprop="datePublished">10月 21</time>
+        <section id="main"><article id="post-记录学习设计模式-01-简单工厂和工厂方法" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/10/07/ji-lu-xue-xi-she-ji-mo-shi-01-jian-dan-gong-han-he-gong-han-fang-fa/" class="article-date">
+  <time datetime="2022-10-07T10:44:18.000Z" itemprop="datePublished">2022-10-07</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/java/">java</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/10/21/ji-yu-xcode11-chuang-jian-zi-ding-yi-uiwindow/">基于Xcode11创建自定义UIWindow</a>
+    <h1 class="article-title" itemprop="name">
+      记录学习设计模式-01-简单工厂和工厂方法
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>简单工厂<br>先看下定义<br>提供一个创建对象实例的功能，而无须关心其具体事项。被创建的类型可以是接口、抽象类，也可以是具体的类。</p>
+<ol>
+<li>为什么要有简单工厂？<br>简单工厂将对象创建细节封装到工厂类中，通过提供的api接口和factory工厂创建对象。面向接口编程，更为抽象，符合面向对象设计。</li>
+</ol>
 
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yangxiaodg.github.io/2022/10/07/ji-lu-xue-xi-she-ji-mo-shi-01-jian-dan-gong-han-he-gong-han-fang-fa/" data-id="cl8yddyvs0000l8ld6zezcqqe" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%80%9D%E8%80%83%E6%96%B9%E5%BC%8F/" rel="tag">思考方式</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2021/10/21/ji-yu-xcode11-chuang-jian-zi-ding-yi-uiwindow/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">基于Xcode11创建自定义UIWindow</div>
+    </a>
+  
+</nav>
+
+  
+</article>
 
 </section>
         
