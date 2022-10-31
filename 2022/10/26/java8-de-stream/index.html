@@ -4,8 +4,15 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="基于Xcode11创建自定义UIWindow, 杨晓东&amp;Blog">
-    <meta name="description" content="基于Xcode11创建自定义UIWindow">
+    <meta name="keywords" content="java8的stream, 杨晓东&amp;Blog">
+    <meta name="description" content="
+就目前而言，Java8之类的仍然是主流，即使用比较广泛，其次就是JDK11之类的，毕竟对于企业研发而言，求稳第一。
+
+一、Java8有哪些新特性？
+Lambda表达式；
+新的日期API；
+引入Optional；
+新增Base64加解密AP">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +24,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>基于Xcode11创建自定义UIWindow | 杨晓东&amp;Blog</title>
+    <title>java8的stream | 杨晓东&amp;Blog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
     
 
@@ -334,12 +341,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">基于Xcode11创建自定义UIWindow</h1>
+                    <h1 class="description center-align post-title">java8的stream</h1>
                 </div>
             </div>
         </div>
@@ -363,12 +370,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/ios/">
-                                <span class="chip bg-color">ios</span>
-                            </a>
-                        
-                            <a href="/tags/objective-c/">
-                                <span class="chip bg-color">objective-c</span>
+                            <a href="/tags/java8/">
+                                <span class="chip bg-color">java8</span>
                             </a>
                         
                     </div>
@@ -379,8 +382,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/ios/" class="post-category">
-                                ios
+                            <a href="/categories/java/" class="post-category">
+                                java
                             </a>
                         
                     </div>
@@ -392,7 +395,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-10-21
+                    2022-10-26
                 </div>
                 
 
@@ -416,63 +419,70 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="基于Xcode11创建自定义UIWindow"><a href="#基于Xcode11创建自定义UIWindow" class="headerlink" title="基于Xcode11创建自定义UIWindow"></a>基于Xcode11创建自定义UIWindow</h1><p>最近更新Xcode 11.4，在创建项目之后发现多了苹果分屏技术，新增了SceneDelegate这个文件，另外AppDelegate文件结构也发生了变化，给人一种似曾相识又不同的感觉，总的来说之前熟悉的Window不再由AppDelegate管理，而是交给了SceneDelegate。</p>
-<p>如下图即可看出目录结构和info配置变化：<br><img src="/.io//16277872068447.png"></p>
-<p>简要介绍Application Scene Manifest分屏配置：</p>
-<pre class="line-numbers language-none"><code class="language-none">enable Multipe Windows --- 是否允许分屏
-Scene Configuratiton --- 屏幕配置项
-Application Session Role --- 程序屏幕配置规则（为每个Scene指定规则）
-Configuration Name --- 配置名称
-Delegate Class Name --- 代理类名称
-Storyboard Name --- Storyboard名称<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>解读如下：</p>
-<p>创建项目工程时，系统默认为我们创建了一个名为Default Configuratiton 的默认配置，代理类名称为SceneDelegate,入口名为Main的Storyboard，代码如下：</p>
-<pre class="line-numbers language-none"><code class="language-none">- (UISceneConfiguration *)application:(UIApplication *)application configurationForConnectingSceneSession:(UISceneSession *)connectingSceneSession options:(UISceneConnectionOptions *)options &#123;
-    &#x2F;&#x2F; Called when a new scene session is being created.
-    &#x2F;&#x2F; Use this method to select a configuration to create the new scene with.
-    return [[UISceneConfiguration alloc] initWithName:@&quot;Default Configuration&quot; sessionRole:connectingSceneSession.role];
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>回到主题，针对这种情况，如果创建我们熟悉的自定义Window呢？</p>
-<p>一、针对iOS13系统及以上：保留SceneDelegate，需要修改SceneDelegate里面的代码即可；</p>
-<pre class="line-numbers language-none"><code class="language-none">- (void)scene:(UIScene *)scene willConnectToSession:(UISceneSession *)session options:(UISceneConnectionOptions *)connectionOptions &#123;
-    &#x2F;&#x2F; Use this method to optionally configure and attach the UIWindow &#96;window&#96; to the provided UIWindowScene &#96;scene&#96;.
-    &#x2F;&#x2F; If using a storyboard, the &#96;window&#96; property will automatically be initialized and attached to the scene.
-    &#x2F;&#x2F; This delegate does not imply the connecting scene or session are new (see &#96;application:configurationForConnectingSceneSession&#96; instead).
-    
-    
-    if (@available(ios 13, *)) &#123;
-        if (scene) &#123;
-            self.window &#x3D; [[UIWindow alloc] initWithWindowScene:(UIWindowScene *)scene];
-            self.window.frame &#x3D; CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
-            UINavigationController *nav &#x3D; [[UINavigationController alloc] initWithRootViewController:[[ViewController alloc]init]];
-            self.window.rootViewController &#x3D; nav;
-            [self.window makeKeyAndVisible];
-        &#125;
-    &#125;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>效果图：</p>
-<p><img src="/.io//16277872853169.png" alt="-w308"></p>
-<p>二、针对iOS13系统以下：</p>
-<p>a. 删除info.plist文件中的Application Scene Manifest选项;</p>
-<p>b. 删除SceneDelegate文件;</p>
-<p>c. 删除AppDelegate里面的UISceneSession lifecycle方法;</p>
-<p>d. AppDelegate头文件添加window属性;</p>
-<p><code>@property (strong, nonatomic) UIWindow *window;</code><br>e. 修改AppDelegate启动方法：</p>
-<pre class="line-numbers language-none"><code class="language-none">- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions &#123;
-    &#x2F;&#x2F; Override point for customization after application launch.
-    self.window &#x3D; [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    UIViewController *vc &#x3D; [[UIViewController alloc]init];
-    vc.view.backgroundColor &#x3D; [UIColor greenColor];
-    UINavigationController *nav &#x3D; [[UINavigationController alloc] initWithRootViewController:vc];
-    self.window.rootViewController &#x3D; nav;
-    [self.window makeKeyAndVisible];
-    return YES;
-&#125;
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>效果图：</p>
-<p><img src="/.io//16277873129770.png" alt="-w308"></p>
-<p>至此，我们又回到了曾经熟悉的开发场景。</p>
+                <blockquote>
+<p>就目前而言，Java8之类的仍然是主流，即使用比较广泛，其次就是JDK11之类的，毕竟对于企业研发而言，求稳第一。</p>
+</blockquote>
+<h4 id="一、Java8有哪些新特性？"><a href="#一、Java8有哪些新特性？" class="headerlink" title="一、Java8有哪些新特性？"></a>一、Java8有哪些新特性？</h4><ol>
+<li>Lambda表达式；</li>
+<li>新的日期API；</li>
+<li>引入Optional；</li>
+<li>新增Base64加解密API；</li>
+<li>接口的默认方法和静态方法；</li>
+<li>新增方法引用格式；</li>
+<li>新增Stream类；</li>
+<li>注解相关的改变；</li>
+<li>支持并行数组；</li>
+<li>对并发类的扩展。<br>这里不一一讲解，只讲Stream相关系列的实战和应用。</li>
+</ol>
+<h4 id="二、我在实践应用Stream相关的是如何提高开发效率的？"><a href="#二、我在实践应用Stream相关的是如何提高开发效率的？" class="headerlink" title="二、我在实践应用Stream相关的是如何提高开发效率的？"></a>二、我在实践应用Stream相关的是如何提高开发效率的？</h4><h5 id="以下以实用为主-实际应用比较多的-，进行分类划分。在实际中这些通常以组合的形式进行使用，不局限于单单使用某一个。这样做的目的就是为了提高研发效率以及更快更好的解决问题。不然，使用Stream这些新特性的意义也就不存在了。"><a href="#以下以实用为主-实际应用比较多的-，进行分类划分。在实际中这些通常以组合的形式进行使用，不局限于单单使用某一个。这样做的目的就是为了提高研发效率以及更快更好的解决问题。不然，使用Stream这些新特性的意义也就不存在了。" class="headerlink" title="以下以实用为主(实际应用比较多的)，进行分类划分。在实际中这些通常以组合的形式进行使用，不局限于单单使用某一个。这样做的目的就是为了提高研发效率以及更快更好的解决问题。不然，使用Stream这些新特性的意义也就不存在了。"></a>以下以实用为主(实际应用比较多的)，进行分类划分。在实际中这些通常以组合的形式进行使用，不局限于单单使用某一个。这样做的目的就是为了提高研发效率以及更快更好的解决问题。不然，使用Stream这些新特性的意义也就不存在了。</h5><h6 id="1-分组"><a href="#1-分组" class="headerlink" title="1. 分组"></a>1. 分组</h6><pre class="line-numbers language-none"><code class="language-none">Map&lt;String, List&lt;T&gt;&gt; groupMapData &#x3D; originData.stream().collect(Collectors.groupingBy(T::getType));<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
+<h6 id="2-条件筛选"><a href="#2-条件筛选" class="headerlink" title="2. 条件筛选"></a>2. 条件筛选</h6><pre class="line-numbers language-none"><code class="language-none">List&lt;T&gt; filterList &#x3D; originData.stream().filter(a -&gt; a.getName().equals(&quot;YC&quot;)).collect(Collectors.toList());<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h6 id="3-排序"><a href="#3-排序" class="headerlink" title="3. 排序"></a>3. 排序</h6><pre class="line-numbers language-none"><code class="language-none">List&lt;T&gt; filterOBDHourData &#x3D; originData.stream()
+                       .sorted(Comparator.comparing(T::getId).reversed())
+                       .collect(Collectors.toList());<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<h6 id="4-去重"><a href="#4-去重" class="headerlink" title="4. 去重"></a>4. 去重</h6><pre class="line-numbers language-none"><code class="language-none">List&lt;T&gt; dataVOS &#x3D; originData.stream().collect(
+        Collectors.collectingAndThen(
+            Collectors.toCollection(() -&gt; new TreeSet&lt;&gt;(Comparator.comparing(T::getName))), ArrayList::new)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<h6 id="5-数组转List"><a href="#5-数组转List" class="headerlink" title="5. 数组转List"></a>5. 数组转List</h6><pre class="line-numbers language-none"><code class="language-none">List&lt;String&gt; codes &#x3D; new ArrayList&lt;&gt;();
+String[] arr &#x3D; target.trim().split(&quot;,&quot;);
+if (arr.length &gt; 0) &#123;
+  codes &#x3D; Stream.of(arr).collect(Collectors.toList());
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h6 id="6-数据合并-含去重以及不去重"><a href="#6-数据合并-含去重以及不去重" class="headerlink" title="6. 数据合并(含去重以及不去重)"></a>6. 数据合并(含去重以及不去重)</h6><pre class="line-numbers language-none"><code class="language-none">List&lt;String&gt; result &#x3D; Stream.of(Lists.newArrayList(&quot;A&quot;, &quot;B&quot;, &quot;C&quot;), Lists.newArrayList(&quot;A&quot;, &quot;B&quot;))
+.flatMap(Collection::stream).distinct().collect(Collectors.toList());
+
+List&lt;String&gt; result &#x3D; Stream.of(Lists.newArrayList(&quot;A&quot;, &quot;B&quot;, &quot;C&quot;), Lists.newArrayList(&quot;A&quot;, &quot;B&quot;))
+.flatMap(Collection::stream).collect(Collectors.toList());<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h6 id="7-分页"><a href="#7-分页" class="headerlink" title="7. 分页"></a>7. 分页</h6><pre class="line-numbers language-none"><code class="language-none">List&lt;T&gt; dataList &#x3D; originData.stream().skip((dto.getPageNum() - 1) * dto.getPageSize()).limit(dto.getPageSize()).collect(Collectors.toList());<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h6 id="8-统计"><a href="#8-统计" class="headerlink" title="8. 统计"></a>8. 统计</h6><pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;求最大值
+BigDecimal max &#x3D; dataList.stream().map(T::getPrice).max((x1, x2) -&gt; x1.compareTo(x2)).get();
+
+&#x2F;&#x2F;求最小值
+BigDecimal min &#x3D; dataList.stream().map(T::getPrice).min((x1, x2) -&gt; x1.compareTo(x2)).get();
+
+&#x2F;&#x2F;求和 空指针异常排除
+BigDecimal sum &#x3D; dataList.stream().map(vo -&gt; ObjectUtils.isEmpty(vo.getPrice()) ? new BigDecimal(0) : vo.getPrice()).reduce(BigDecimal.ZERO, BigDecimal::add);
+
+&#x2F;&#x2F;求平均值
+BigDecimal average &#x3D; dataList.stream().map(vo -&gt; ObjectUtils.isEmpty(vo.getPrice()) ? new BigDecimal(0) : vo.getPrice()).reduce(BigDecimal.ZERO, BigDecimal::add).divide(BigDecimal.valueOf(dataList.size()), 2, BigDecimal.ROUND_HALF_UP);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h6 id="9-拼接"><a href="#9-拼接" class="headerlink" title="9. 拼接"></a>9. 拼接</h6><pre class="line-numbers language-none"><code class="language-none">String nameJoin &#x3D; dataList.stream().map(T::getName).collect(Collectors.joining(&quot;,&quot;));<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h6 id="10-归集"><a href="#10-归集" class="headerlink" title="10. 归集"></a>10. 归集</h6><pre class="line-numbers language-none"><code class="language-none">Map&lt;String, T&gt; mapNameObject &#x3D; dataList.stream().collect(Collectors.toMap(T::getName, item -&gt; item));<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h6 id="11-映射Map"><a href="#11-映射Map" class="headerlink" title="11. 映射Map"></a>11. 映射Map</h6><pre class="line-numbers language-none"><code class="language-none">List&lt;String&gt; strList &#x3D; Arrays.asList(&quot;1,2,3&quot;, &quot;4,5,6&quot;);
+List&lt;String&gt; newStrList &#x3D; strList.stream().flatMap(item -&gt; &#123;
+  return Arrays.stream(item.split(&quot;,&quot;));
+&#125;).collect(Collectors.toList());<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h6 id="12-搜索"><a href="#12-搜索" class="headerlink" title="12. 搜索"></a>12. 搜索</h6><pre class="line-numbers language-none"><code class="language-none">originData.stream().filter(data -&gt; Boolean.FALSE ? data.getName().equals(dto.getName()) :
+data.getName().contains(dto
+    .getName()))
+.collect(Collectors.toList());<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
                 
             </div>
             <hr/>
@@ -498,7 +508,7 @@ Storyboard Name --- Storyboard名称<span aria-hidden="true" class="line-numbers
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://yangxiaodg.github.io/2021/10/21/ji-yu-xcode11-chuang-jian-zi-ding-yi-uiwindow/">https://yangxiaodg.github.io/2021/10/21/ji-yu-xcode11-chuang-jian-zi-ding-yi-uiwindow/</a>
+                    <a href="https://yangxiaodg.github.io/2022/10/26/java8-de-stream/">https://yangxiaodg.github.io/2022/10/26/java8-de-stream/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -536,12 +546,8 @@ Storyboard Name --- Storyboard名称<span aria-hidden="true" class="line-numbers
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/ios/">
-                                    <span class="chip bg-color">ios</span>
-                                </a>
-                            
-                                <a href="/tags/objective-c/">
-                                    <span class="chip bg-color">objective-c</span>
+                                <a href="/tags/java8/">
+                                    <span class="chip bg-color">java8</span>
                                 </a>
                             
                         </div>
@@ -620,9 +626,60 @@ Storyboard Name --- Storyboard名称<span aria-hidden="true" class="line-numbers
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2022/10/26/java8-de-stream/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="java8的stream">
+                        
+                        <span class="card-title">java8的stream</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-10-26
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/java/" class="post-category">
+                                    java
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/java8/">
+                        <span class="chip bg-color">java8</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
             <div class="card">
                 <a href="/2022/10/07/ji-lu-xue-xi-she-ji-mo-shi-01-jian-dan-gong-han-he-gong-han-fang-fa/">
                     <div class="card-image">
@@ -640,9 +697,9 @@ Storyboard Name --- Storyboard名称<span aria-hidden="true" class="line-numbers
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-10-07
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-10-07
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -660,60 +717,6 @@ Storyboard Name --- Storyboard名称<span aria-hidden="true" class="line-numbers
                     
                     <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
                         <span class="chip bg-color">设计模式</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
-            </div>
-            <div class="card">
-                <a href="/2021/10/21/ji-yu-xcode11-chuang-jian-zi-ding-yi-uiwindow/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="基于Xcode11创建自定义UIWindow">
-                        
-                        <span class="card-title">基于Xcode11创建自定义UIWindow</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            基于Xcode11创建自定义UIWindow
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-21
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/ios/" class="post-category">
-                                    ios
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/ios/">
-                        <span class="chip bg-color">ios</span>
-                    </a>
-                    
-                    <a href="/tags/objective-c/">
-                        <span class="chip bg-color">objective-c</span>
                     </a>
                     
                 </div>

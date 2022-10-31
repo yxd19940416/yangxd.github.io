@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>java8的stream</title>
+      <link href="/2022/10/26/java8-de-stream/"/>
+      <url>/2022/10/26/java8-de-stream/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>就目前而言，Java8之类的仍然是主流，即使用比较广泛，其次就是JDK11之类的，毕竟对于企业研发而言，求稳第一。</p></blockquote><h4 id="一、Java8有哪些新特性？"><a href="#一、Java8有哪些新特性？" class="headerlink" title="一、Java8有哪些新特性？"></a>一、Java8有哪些新特性？</h4><ol><li>Lambda表达式；</li><li>新的日期API；</li><li>引入Optional；</li><li>新增Base64加解密API；</li><li>接口的默认方法和静态方法；</li><li>新增方法引用格式；</li><li>新增Stream类；</li><li>注解相关的改变；</li><li>支持并行数组；</li><li>对并发类的扩展。<br>这里不一一讲解，只讲Stream相关系列的实战和应用。</li></ol><h4 id="二、我在实践应用Stream相关的是如何提高开发效率的？"><a href="#二、我在实践应用Stream相关的是如何提高开发效率的？" class="headerlink" title="二、我在实践应用Stream相关的是如何提高开发效率的？"></a>二、我在实践应用Stream相关的是如何提高开发效率的？</h4><h5 id="以下以实用为主-实际应用比较多的-，进行分类划分。在实际中这些通常以组合的形式进行使用，不局限于单单使用某一个。这样做的目的就是为了提高研发效率以及更快更好的解决问题。不然，使用Stream这些新特性的意义也就不存在了。"><a href="#以下以实用为主-实际应用比较多的-，进行分类划分。在实际中这些通常以组合的形式进行使用，不局限于单单使用某一个。这样做的目的就是为了提高研发效率以及更快更好的解决问题。不然，使用Stream这些新特性的意义也就不存在了。" class="headerlink" title="以下以实用为主(实际应用比较多的)，进行分类划分。在实际中这些通常以组合的形式进行使用，不局限于单单使用某一个。这样做的目的就是为了提高研发效率以及更快更好的解决问题。不然，使用Stream这些新特性的意义也就不存在了。"></a>以下以实用为主(实际应用比较多的)，进行分类划分。在实际中这些通常以组合的形式进行使用，不局限于单单使用某一个。这样做的目的就是为了提高研发效率以及更快更好的解决问题。不然，使用Stream这些新特性的意义也就不存在了。</h5><h6 id="1-分组"><a href="#1-分组" class="headerlink" title="1. 分组"></a>1. 分组</h6><pre class="line-numbers language-none"><code class="language-none">Map&lt;String, List&lt;T&gt;&gt; groupMapData &#x3D; originData.stream().collect(Collectors.groupingBy(T::getType));<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><h6 id="2-条件筛选"><a href="#2-条件筛选" class="headerlink" title="2. 条件筛选"></a>2. 条件筛选</h6><pre class="line-numbers language-none"><code class="language-none">List&lt;T&gt; filterList &#x3D; originData.stream().filter(a -&gt; a.getName().equals(&quot;YC&quot;)).collect(Collectors.toList());<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><h6 id="3-排序"><a href="#3-排序" class="headerlink" title="3. 排序"></a>3. 排序</h6><pre class="line-numbers language-none"><code class="language-none">List&lt;T&gt; filterOBDHourData &#x3D; originData.stream()                       .sorted(Comparator.comparing(T::getId).reversed())                       .collect(Collectors.toList());<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre><h6 id="4-去重"><a href="#4-去重" class="headerlink" title="4. 去重"></a>4. 去重</h6><pre class="line-numbers language-none"><code class="language-none">List&lt;T&gt; dataVOS &#x3D; originData.stream().collect(        Collectors.collectingAndThen(            Collectors.toCollection(() -&gt; new TreeSet&lt;&gt;(Comparator.comparing(T::getName))), ArrayList::new)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre><h6 id="5-数组转List"><a href="#5-数组转List" class="headerlink" title="5. 数组转List"></a>5. 数组转List</h6><pre class="line-numbers language-none"><code class="language-none">List&lt;String&gt; codes &#x3D; new ArrayList&lt;&gt;();String[] arr &#x3D; target.trim().split(&quot;,&quot;);if (arr.length &gt; 0) &#123;  codes &#x3D; Stream.of(arr).collect(Collectors.toList());&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre><h6 id="6-数据合并-含去重以及不去重"><a href="#6-数据合并-含去重以及不去重" class="headerlink" title="6. 数据合并(含去重以及不去重)"></a>6. 数据合并(含去重以及不去重)</h6><pre class="line-numbers language-none"><code class="language-none">List&lt;String&gt; result &#x3D; Stream.of(Lists.newArrayList(&quot;A&quot;, &quot;B&quot;, &quot;C&quot;), Lists.newArrayList(&quot;A&quot;, &quot;B&quot;)).flatMap(Collection::stream).distinct().collect(Collectors.toList());List&lt;String&gt; result &#x3D; Stream.of(Lists.newArrayList(&quot;A&quot;, &quot;B&quot;, &quot;C&quot;), Lists.newArrayList(&quot;A&quot;, &quot;B&quot;)).flatMap(Collection::stream).collect(Collectors.toList());<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre><h6 id="7-分页"><a href="#7-分页" class="headerlink" title="7. 分页"></a>7. 分页</h6><pre class="line-numbers language-none"><code class="language-none">List&lt;T&gt; dataList &#x3D; originData.stream().skip((dto.getPageNum() - 1) * dto.getPageSize()).limit(dto.getPageSize()).collect(Collectors.toList());<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><h6 id="8-统计"><a href="#8-统计" class="headerlink" title="8. 统计"></a>8. 统计</h6><pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;求最大值BigDecimal max &#x3D; dataList.stream().map(T::getPrice).max((x1, x2) -&gt; x1.compareTo(x2)).get();&#x2F;&#x2F;求最小值BigDecimal min &#x3D; dataList.stream().map(T::getPrice).min((x1, x2) -&gt; x1.compareTo(x2)).get();&#x2F;&#x2F;求和 空指针异常排除BigDecimal sum &#x3D; dataList.stream().map(vo -&gt; ObjectUtils.isEmpty(vo.getPrice()) ? new BigDecimal(0) : vo.getPrice()).reduce(BigDecimal.ZERO, BigDecimal::add);&#x2F;&#x2F;求平均值BigDecimal average &#x3D; dataList.stream().map(vo -&gt; ObjectUtils.isEmpty(vo.getPrice()) ? new BigDecimal(0) : vo.getPrice()).reduce(BigDecimal.ZERO, BigDecimal::add).divide(BigDecimal.valueOf(dataList.size()), 2, BigDecimal.ROUND_HALF_UP);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><h6 id="9-拼接"><a href="#9-拼接" class="headerlink" title="9. 拼接"></a>9. 拼接</h6><pre class="line-numbers language-none"><code class="language-none">String nameJoin &#x3D; dataList.stream().map(T::getName).collect(Collectors.joining(&quot;,&quot;));<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><h6 id="10-归集"><a href="#10-归集" class="headerlink" title="10. 归集"></a>10. 归集</h6><pre class="line-numbers language-none"><code class="language-none">Map&lt;String, T&gt; mapNameObject &#x3D; dataList.stream().collect(Collectors.toMap(T::getName, item -&gt; item));<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><h6 id="11-映射Map"><a href="#11-映射Map" class="headerlink" title="11. 映射Map"></a>11. 映射Map</h6><pre class="line-numbers language-none"><code class="language-none">List&lt;String&gt; strList &#x3D; Arrays.asList(&quot;1,2,3&quot;, &quot;4,5,6&quot;);List&lt;String&gt; newStrList &#x3D; strList.stream().flatMap(item -&gt; &#123;  return Arrays.stream(item.split(&quot;,&quot;));&#125;).collect(Collectors.toList());<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre><h6 id="12-搜索"><a href="#12-搜索" class="headerlink" title="12. 搜索"></a>12. 搜索</h6><pre class="line-numbers language-none"><code class="language-none">originData.stream().filter(data -&gt; Boolean.FALSE ? data.getName().equals(dto.getName()) :data.getName().contains(dto    .getName())).collect(Collectors.toList());<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> java </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> java8 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>记录学习设计模式-01-简单工厂和工厂方法</title>
       <link href="/2022/10/07/ji-lu-xue-xi-she-ji-mo-shi-01-jian-dan-gong-han-he-gong-han-fang-fa/"/>
       <url>/2022/10/07/ji-lu-xue-xi-she-ji-mo-shi-01-jian-dan-gong-han-he-gong-han-fang-fa/</url>
@@ -21,8 +46,6 @@
         <tags>
             
             <tag> 设计模式 </tag>
-            
-            <tag> 思考方式 </tag>
             
         </tags>
       
