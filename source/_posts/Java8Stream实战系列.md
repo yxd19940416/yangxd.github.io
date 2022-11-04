@@ -6,7 +6,7 @@ toc: true
 mathjax: true
 date: 2022-11-04 10:02:54
 password:
-summary:
+summary: 就目前而言，Java8之类的仍然是主流
 tags:
     - jdk1.8
     - stream
