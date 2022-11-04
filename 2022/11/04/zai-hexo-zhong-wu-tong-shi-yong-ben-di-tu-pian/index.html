@@ -417,8 +417,7 @@
 <p>hexo 下插入图片现在大概有几个方案</p>
 <h3 id="1-1-放在根目录"><a href="#1-1-放在根目录" class="headerlink" title="1.1 放在根目录"></a>1.1 放在根目录</h3><p>早期大部分的方案是把图片放在 <code>source/img</code> 下，然后在 markdown 里写 <code>![img](/source/img/img.png)</code> 。显然这样在本地的编辑器里完全不能正确识别图片的位置。</p>
 <h3 id="1-2-asset-image"><a href="#1-2-asset-image" class="headerlink" title="1.2 asset-image"></a>1.2 asset-image</h3><p>在 hexo 2.x 时出现的插件，后来被吸纳进 <code>hexo 3 core</code> ，用法的介绍见 [资源文件夹 | Hexo][_ Hexo] 。比较尴尬的是，这种方法直接放弃了 markdown 原来的语法，使用类似 ``的语法，。markdown 本来有插入图片的语法不好好支持，专门用一个新的语法来插入本地图片，让我这种强迫症不太能接受。</p>
-<h2 id="2-解决方案"><a href="#2-解决方案" class="headerlink" title="2 解决方案"></a>2 解决方案</h2><p>[CodeFalling/hexo-asset-image][CodeFalling_hexo-asset-image]</p>
-<h3 id="2-1-使用"><a href="#2-1-使用" class="headerlink" title="2.1 使用"></a>2.1 使用</h3><p>首先确认 <code>_config.yml</code> 中有 <code>post_asset_folder:true</code> 。</p>
+<h2 id="2-解决方案"><a href="#2-解决方案" class="headerlink" title="2 解决方案"></a>2 解决方案</h2><h3 id="2-1-使用"><a href="#2-1-使用" class="headerlink" title="2.1 使用"></a>2.1 使用</h3><p>首先确认 <code>_config.yml</code> 中有 <code>post_asset_folder:true</code> 。</p>
 <p>在 hexo 目录，执行</p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java">npm install https<span class="token operator">:</span><span class="token operator">/</span><span class="token operator">/</span>github<span class="token punctuation">.</span>com<span class="token operator">/</span><span class="token class-name">CodeFalling</span><span class="token operator">/</span>hexo<span class="token operator">-</span>asset<span class="token operator">-</span>image <span class="token operator">--</span>save<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
