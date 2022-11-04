@@ -1,19 +1,18 @@
-
 ---
 title: Java基础篇的八股文
 top: false
 cover: false
 toc: true
 mathjax: true
-date: 2022-11-04 13:02:54
+date: 2022-11-04 13:16:06
 password:
-summary: Java 为纯面向对象的语言。它能够直接反应现实生活中的对象。
+summary: java 语言具有哪些特点？ 
 tags:
     - java基础
+    - 八股文
 categories:
     - java
 ---
-
 ### Java 语言具有哪些特点？ 
 
  *  Java 为纯面向对象的语言。它能够直接反应现实生活中的对象。

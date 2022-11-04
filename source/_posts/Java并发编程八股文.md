@@ -1,19 +1,18 @@
-
 ---
 title: Java并发编程八股文
 top: false
 cover: false
 toc: true
 mathjax: true
-date: 2022-11-04 13:02:54
+date: 2022-11-04 13:17:41
 password:
-summary: Java内存模型定义了程序中各种变量的访问规则
+summary: as-if-serial 保证单线程程序的执行结果不变，happens-before 保证正确同步的多线程程序的执行结果不变。
 tags:
     - 并发编程
+    - 八股文
 categories:
     - java
 ---
-
 ### 简述Java内存模型（JMM） 
 
 Java内存模型定义了程序中各种变量的访问规则：
