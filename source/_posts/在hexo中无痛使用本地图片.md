@@ -31,7 +31,6 @@ hexo 下插入图片现在大概有几个方案
 
 ## 2 解决方案 
 
-[CodeFalling/hexo-asset-image][CodeFalling_hexo-asset-image]
 
 ### 2.1 使用 
 
