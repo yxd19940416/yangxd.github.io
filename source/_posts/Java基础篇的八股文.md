@@ -6,7 +6,7 @@ toc: true
 mathjax: true
 date: 2022-11-04 13:16:06
 password:
-summary: java 语言具有哪些特点？ 
+summary: java语言具有哪些特点？ 
 tags:
     - java基础
     - 八股文

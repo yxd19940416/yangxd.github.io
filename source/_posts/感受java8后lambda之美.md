@@ -1,4 +1,3 @@
-
 ---
 title: 感受java8后lambda之美
 top: false
@@ -7,7 +6,7 @@ toc: true
 mathjax: true
 date: 2022-11-04 09:41:09
 password:
-summary: java8最大的特性就是引入Lambda表达式，即函数式编程，可以将行为进行传递。
+summary: 函数式编程，可以将行为进行传递
 tags: 
     - jdk1.8
     - lambda

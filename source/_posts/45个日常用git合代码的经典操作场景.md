@@ -6,7 +6,7 @@ toc: true
 mathjax: true
 date: 2022-11-04 10:49:16
 password:
-summary: 下边我们整理了45个日常用git合代码的经典操作场景，基本覆盖了工作中的需求。
+summary: 整理了45个日常用git操作
 tags:
     - git
     - 代码合并
