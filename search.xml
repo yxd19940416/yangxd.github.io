@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>在hexo中无痛使用本地图片</title>
+      <link href="/2022/11/04/zai-hexo-zhong-wu-tong-shi-yong-ben-di-tu-pian/"/>
+      <url>/2022/11/04/zai-hexo-zhong-wu-tong-shi-yong-ben-di-tu-pian/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> hexo </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> hexo </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>感受java8后lambda之美</title>
       <link href="/2022/11/04/gan-shou-java8-hou-lambda-zhi-mei/"/>
       <url>/2022/11/04/gan-shou-java8-hou-lambda-zhi-mei/</url>
@@ -13,18 +38,18 @@
       
       <categories>
           
-          <category> jdk1.8 </category>
-          
-          <category> lambda </category>
-          
-          <category> 函数式编程 </category>
+          <category> java </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> java </tag>
+            <tag> jdk1.8 </tag>
+            
+            <tag> lambda </tag>
+            
+            <tag> 函数式编程 </tag>
             
         </tags>
       
