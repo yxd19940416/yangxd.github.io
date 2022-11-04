@@ -6,7 +6,7 @@ toc: false
 mathjax: true
 date: 2022-11-04 17:13:35
 password:
-summary: 为什么 Spring和IDEA 都不推荐使用 @Autowired 注解
+summary: Spring和IDEA都不推荐使用@Autowired 注解
 tags:
     - ioc
     - java

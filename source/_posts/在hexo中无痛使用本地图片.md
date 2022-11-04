@@ -6,7 +6,7 @@ toc: false
 mathjax: true
 date: 2022-11-04 09:57:08
 password:
-summary: 在hexo中使用本地图片是件非常让人纠结的事情
+summary: hexo中使用本地图片是件非常让人纠结的事情
 tags:
     hexo
 categories:

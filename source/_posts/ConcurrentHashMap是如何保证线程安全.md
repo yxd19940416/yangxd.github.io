@@ -1,15 +1,19 @@
 ---
 title: ConcurrentHashMap是如何保证线程安全
-top: false
+top: true
 cover: false
-toc: true
+toc: false
 mathjax: true
 date: 2022-11-04 17:16:22
 password:
-summary: ConcurrentHashmap(1.8)这个并发集合框架是线程安全的
+summary: ConcurrentHashmap并发集合框架是线程安全
 tags:
+    - java基础
+    - 源码
 categories:
+    - java
 ---
+
 我们知道，ConcurrentHashmap(1.8)这个并发集合框架是线程安全的，当你看到源码的get操作时，会发现get操作全程是没有加任何锁的，这也是这篇博文讨论的问题——为什么它不需要加锁呢？
 
 ### ConcurrentHashMap的简介 
