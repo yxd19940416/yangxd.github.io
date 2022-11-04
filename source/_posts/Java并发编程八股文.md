@@ -6,7 +6,7 @@ toc: true
 mathjax: true
 date: 2022-11-04 13:17:41
 password:
-summary: as-if-serial 保证单线程程序的执行结果不变，happens-before 保证正确同步的多线程程序的执行结果不变。
+summary: as-if-serial 保证单线程程序的执行结果不变
 tags:
     - 并发编程
     - 八股文

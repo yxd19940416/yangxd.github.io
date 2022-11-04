@@ -6,7 +6,7 @@ toc: true
 mathjax: true
 date: 2022-11-04 13:16:53
 password:
-summary: 线程私有的运行时数据区: 程序计数器、Java 虚拟机栈、本地方法栈。
+summary: 程序计数器、Java 虚拟机栈、本地方法栈。
 tags:
     - java虚拟机
     - 八股文
