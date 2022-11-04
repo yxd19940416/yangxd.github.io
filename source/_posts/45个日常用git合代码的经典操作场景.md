@@ -2,7 +2,7 @@
 title: 45个日常用git合代码的经典操作场景
 top: false
 cover: false
-toc: true
+toc: false
 mathjax: true
 date: 2022-11-04 10:49:16
 password:

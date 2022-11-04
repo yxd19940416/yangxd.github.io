@@ -2,7 +2,7 @@
 title: SQL语句性能优化策略
 top: false
 cover: false
-toc: true
+toc: false
 mathjax: true
 date: 2022-11-04 13:41:23
 password:

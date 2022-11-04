@@ -2,7 +2,7 @@
 title: 在hexo中无痛使用本地图片
 top: false
 cover: false
-toc: true
+toc: false
 mathjax: true
 date: 2022-11-04 09:57:08
 password:
