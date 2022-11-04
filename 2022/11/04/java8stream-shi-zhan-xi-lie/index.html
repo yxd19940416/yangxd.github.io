@@ -4,8 +4,13 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="在hexo中无痛使用本地图片, 杨晓东&amp;Blog">
-    <meta name="description" content="在 hexo 中使用本地图片是件非常让人纠结的事情，在 markdown 里的图片地址似乎永远无法和最后生成的网页保持一致。">
+    <meta name="keywords" content="Java8Stream实战系列, 杨晓东&amp;Blog">
+    <meta name="description" content="就目前而言，Java8之类的仍然是主流，即使用比较广泛，其次就是JDK11之类的，毕竟对于企业研发而言，求稳第一。  
+一、Java8有哪些新特性？
+ 1.Lambda表达式；
+ 2.新的日期API；
+ 3.引入Optional；
+ 4.新">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +22,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>在hexo中无痛使用本地图片 | 杨晓东&amp;Blog</title>
+    <title>Java8Stream实战系列 | 杨晓东&amp;Blog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
     
 
@@ -334,12 +339,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">在hexo中无痛使用本地图片</h1>
+                    <h1 class="description center-align post-title">Java8Stream实战系列</h1>
                 </div>
             </div>
         </div>
@@ -363,8 +368,16 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/hexo/">
-                                <span class="chip bg-color">hexo</span>
+                            <a href="/tags/jdk1-8/">
+                                <span class="chip bg-color">jdk1.8</span>
+                            </a>
+                        
+                            <a href="/tags/stream/">
+                                <span class="chip bg-color">stream</span>
+                            </a>
+                        
+                            <a href="/tags/lambda%E6%93%8D%E4%BD%9C/">
+                                <span class="chip bg-color">lambda操作</span>
                             </a>
                         
                     </div>
@@ -375,8 +388,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/hexo/" class="post-category">
-                                hexo
+                            <a href="/categories/java/" class="post-category">
+                                java
                             </a>
                         
                     </div>
@@ -412,37 +425,47 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="1-起因"><a href="#1-起因" class="headerlink" title="1 起因"></a>1 起因</h2><p>在 hexo 中使用本地图片是件非常让人纠结的事情，在 markdown 里的图片地址似乎永远无法和最后生成的网页保持一致。</p>
-<p>这些问题使得我一度不愿意使用本地图片而选择用图床，但被移动运营商无耻的横条广告逼得打算上 https，图床只支持 http 就成了问题。</p>
-<p>hexo 下插入图片现在大概有几个方案</p>
-<h3 id="1-1-放在根目录"><a href="#1-1-放在根目录" class="headerlink" title="1.1 放在根目录"></a>1.1 放在根目录</h3><p>早期大部分的方案是把图片放在 <code>source/img</code> 下，然后在 markdown 里写 <code>![img](/source/img/img.png)</code> 。显然这样在本地的编辑器里完全不能正确识别图片的位置。</p>
-<h3 id="1-2-asset-image"><a href="#1-2-asset-image" class="headerlink" title="1.2 asset-image"></a>1.2 asset-image</h3><p>在 hexo 2.x 时出现的插件，后来被吸纳进 <code>hexo 3 core</code> ，用法的介绍见 [资源文件夹 | Hexo][_ Hexo] 。比较尴尬的是，这种方法直接放弃了 markdown 原来的语法，使用类似 ``的语法，。markdown 本来有插入图片的语法不好好支持，专门用一个新的语法来插入本地图片，让我这种强迫症不太能接受。</p>
-<h2 id="2-解决方案"><a href="#2-解决方案" class="headerlink" title="2 解决方案"></a>2 解决方案</h2><p>[CodeFalling/hexo-asset-image][CodeFalling_hexo-asset-image]</p>
-<h3 id="2-1-使用"><a href="#2-1-使用" class="headerlink" title="2.1 使用"></a>2.1 使用</h3><p>首先确认 <code>_config.yml</code> 中有 <code>post_asset_folder:true</code> 。</p>
-<p>在 hexo 目录，执行</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java">npm install https<span class="token operator">:</span><span class="token operator">/</span><span class="token operator">/</span>github<span class="token punctuation">.</span>com<span class="token operator">/</span><span class="token class-name">CodeFalling</span><span class="token operator">/</span>hexo<span class="token operator">-</span>asset<span class="token operator">-</span>image <span class="token operator">--</span>save<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+                <p>就目前而言，Java8之类的仍然是主流，即使用比较广泛，其次就是JDK11之类的，毕竟对于企业研发而言，求稳第一。  </p>
+<h2 id="一、Java8有哪些新特性？"><a href="#一、Java8有哪些新特性？" class="headerlink" title="一、Java8有哪些新特性？"></a>一、Java8有哪些新特性？</h2><ul>
+<li> 1.Lambda表达式；</li>
+<li> 2.新的日期API；</li>
+<li> 3.引入Optional；</li>
+<li> 4.新增Base64加解密API；</li>
+<li> 5.接口的默认方法和静态方法；</li>
+<li> 6.新增方法引用格式；</li>
+<li> 7.新增Stream类；</li>
+<li> 8.注解相关的改变；</li>
+<li> 9.支持并行数组；</li>
+<li> 10.对并发类的扩展。</li>
+</ul>
+<p>这里不一一讲解，只讲Stream相关系列的实战和应用。</p>
+<h2 id="二、我在实践应用Stream相关的是如何提高开发效率的？"><a href="#二、我在实践应用Stream相关的是如何提高开发效率的？" class="headerlink" title="二、我在实践应用Stream相关的是如何提高开发效率的？"></a>二、我在实践应用Stream相关的是如何提高开发效率的？</h2><p>以下以实用为主(实际应用比较多的)，进行分类划分。在实际中这些通常以组合的形式进行使用，不局限于单单使用某一个。这样做的目的就是为了提高研发效率以及更快更好的解决问题。不然，使用Stream这些新特性的意义也就不存在了。</p>
+<h3 id="1-分组"><a href="#1-分组" class="headerlink" title="1.分组"></a>1.分组</h3><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">List</span><span class="token punctuation">&lt;</span><span class="token class-name">T</span><span class="token punctuation">></span><span class="token punctuation">></span></span> groupMapData <span class="token operator">=</span> originData<span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">collect</span><span class="token punctuation">(</span><span class="token class-name">Collectors</span><span class="token punctuation">.</span><span class="token function">groupingBy</span><span class="token punctuation">(</span><span class="token class-name">T</span><span class="token operator">::</span><span class="token function">getType</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p>假设在</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">MacGesture2</span><span class="token operator">-</span><span class="token class-name">Publish</span>
-├── apppicker<span class="token punctuation">.</span>jpg
-├── logo<span class="token punctuation">.</span>jpg
-└── rules<span class="token punctuation">.</span>jpg <span class="token class-name">MacGesture2</span><span class="token operator">-</span><span class="token class-name">Publish</span><span class="token punctuation">.</span>md<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="2-条件筛选"><a href="#2-条件筛选" class="headerlink" title="2.条件筛选"></a>2.条件筛选</h3><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">T</span><span class="token punctuation">></span></span> filterList <span class="token operator">=</span> originData<span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span>a <span class="token operator">-></span> a<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span><span class="token string">"YC"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">collect</span><span class="token punctuation">(</span><span class="token class-name">Collectors</span><span class="token punctuation">.</span><span class="token function">toList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p>这样的目录结构（目录名和文章名一致），只要使用 <code>![logo](MacGesture2-Publish/logo.jpg)</code>就可以插入图片。</p>
-<p>生成的结构为</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span><span class="token operator">/</span><span class="token number">2015</span><span class="token operator">/</span><span class="token number">10</span><span class="token operator">/</span><span class="token number">18</span><span class="token operator">/</span><span class="token class-name">MacGesture2</span><span class="token operator">-</span><span class="token class-name">Publish</span>
-├── apppicker<span class="token punctuation">.</span>jpg
-├── index<span class="token punctuation">.</span>html
-├── logo<span class="token punctuation">.</span>jpg
-└── rules<span class="token punctuation">.</span>jpg<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="3-排序"><a href="#3-排序" class="headerlink" title="3.排序"></a>3.排序</h3><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">T</span><span class="token punctuation">></span></span> filterOBDHourData <span class="token operator">=</span> originData<span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span>                       <span class="token punctuation">.</span><span class="token function">sorted</span><span class="token punctuation">(</span><span class="token class-name">Comparator</span><span class="token punctuation">.</span><span class="token function">comparing</span><span class="token punctuation">(</span><span class="token class-name">T</span><span class="token operator">::</span><span class="token function">getId</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">reversed</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>                       <span class="token punctuation">.</span><span class="token function">collect</span><span class="token punctuation">(</span><span class="token class-name">Collectors</span><span class="token punctuation">.</span><span class="token function">toList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p>同时，生成的 html 是</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token operator">&lt;</span>img src<span class="token operator">=</span><span class="token string">"/2015/10/18/MacGesture2-Publish/logo.jpg"</span> alt<span class="token operator">=</span><span class="token string">"logo"</span><span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="4-去重"><a href="#4-去重" class="headerlink" title="4.去重"></a>4.去重</h3><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">T</span><span class="token punctuation">></span></span> dataVOS <span class="token operator">=</span> originData<span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">collect</span><span class="token punctuation">(</span>        <span class="token class-name">Collectors</span><span class="token punctuation">.</span><span class="token function">collectingAndThen</span><span class="token punctuation">(</span>            <span class="token class-name">Collectors</span><span class="token punctuation">.</span><span class="token function">toCollection</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-></span> <span class="token keyword">new</span> <span class="token class-name">TreeSet</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token class-name">Comparator</span><span class="token punctuation">.</span><span class="token function">comparing</span><span class="token punctuation">(</span><span class="token class-name">T</span><span class="token operator">::</span><span class="token function">getName</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token class-name">ArrayList</span><span class="token operator">::</span><span class="token keyword">new</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p>而不是愚蠢的</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token operator">&lt;</span>img src<span class="token operator">=</span><span class="token string">"MacGesture2-Publish/logo.jpg"</span> alt<span class="token operator">=</span><span class="token string">"logo"</span><span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="5-数组转List"><a href="#5-数组转List" class="headerlink" title="5.数组转List"></a>5.数组转List</h3><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">></span></span> codes <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> arr <span class="token operator">=</span> target<span class="token punctuation">.</span><span class="token function">trim</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span><span class="token string">","</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token keyword">if</span> <span class="token punctuation">(</span>arr<span class="token punctuation">.</span>length <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>  codes <span class="token operator">=</span> <span class="token class-name">Stream</span><span class="token punctuation">.</span><span class="token function">of</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">collect</span><span class="token punctuation">(</span><span class="token class-name">Collectors</span><span class="token punctuation">.</span><span class="token function">toList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p>值得一提的是，这个插件对于 [CodeFalling/hexo-renderer-org][CodeFalling_hexo-renderer-org] 同样有效。</p>
+<h3 id="6-数据合并-含去重以及不去重"><a href="#6-数据合并-含去重以及不去重" class="headerlink" title="6.数据合并(含去重以及不去重)"></a>6.数据合并(含去重以及不去重)</h3><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">></span></span> result <span class="token operator">=</span> <span class="token class-name">Stream</span><span class="token punctuation">.</span><span class="token function">of</span><span class="token punctuation">(</span><span class="token class-name">Lists</span><span class="token punctuation">.</span><span class="token function">newArrayList</span><span class="token punctuation">(</span><span class="token string">"A"</span><span class="token punctuation">,</span> <span class="token string">"B"</span><span class="token punctuation">,</span> <span class="token string">"C"</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token class-name">Lists</span><span class="token punctuation">.</span><span class="token function">newArrayList</span><span class="token punctuation">(</span><span class="token string">"A"</span><span class="token punctuation">,</span> <span class="token string">"B"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">flatMap</span><span class="token punctuation">(</span><span class="token class-name">Collection</span><span class="token operator">::</span><span class="token function">stream</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">distinct</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">collect</span><span class="token punctuation">(</span><span class="token class-name">Collectors</span><span class="token punctuation">.</span><span class="token function">toList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">></span></span> result <span class="token operator">=</span> <span class="token class-name">Stream</span><span class="token punctuation">.</span><span class="token function">of</span><span class="token punctuation">(</span><span class="token class-name">Lists</span><span class="token punctuation">.</span><span class="token function">newArrayList</span><span class="token punctuation">(</span><span class="token string">"A"</span><span class="token punctuation">,</span> <span class="token string">"B"</span><span class="token punctuation">,</span> <span class="token string">"C"</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token class-name">Lists</span><span class="token punctuation">.</span><span class="token function">newArrayList</span><span class="token punctuation">(</span><span class="token string">"A"</span><span class="token punctuation">,</span> <span class="token string">"B"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">flatMap</span><span class="token punctuation">(</span><span class="token class-name">Collection</span><span class="token operator">::</span><span class="token function">stream</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">collect</span><span class="token punctuation">(</span><span class="token class-name">Collectors</span><span class="token punctuation">.</span><span class="token function">toList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h3 id="7-分页"><a href="#7-分页" class="headerlink" title="7.分页"></a>7.分页</h3><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">T</span><span class="token punctuation">></span></span> dataList <span class="token operator">=</span> originData<span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">skip</span><span class="token punctuation">(</span><span class="token punctuation">(</span>dto<span class="token punctuation">.</span><span class="token function">getPageNum</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">*</span> dto<span class="token punctuation">.</span><span class="token function">getPageSize</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">limit</span><span class="token punctuation">(</span>dto<span class="token punctuation">.</span><span class="token function">getPageSize</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">collect</span><span class="token punctuation">(</span><span class="token class-name">Collectors</span><span class="token punctuation">.</span><span class="token function">toList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="8-统计"><a href="#8-统计" class="headerlink" title="8.统计"></a>8.统计</h3><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">//求最大值BigDecimal max = dataList.stream().map(T::getPrice).max((x1, x2) -> x1.compareTo(x2)).get();</span>
+<span class="token comment">//求最小值BigDecimal min = dataList.stream().map(T::getPrice).min((x1, x2) -> x1.compareTo(x2)).get();</span>
+<span class="token comment">//求和 空指针异常排除BigDecimal sum = dataList.stream().map(vo -> ObjectUtils.isEmpty(vo.getPrice()) ? new BigDecimal(0) : vo.getPrice()).reduce(BigDecimal.ZERO, BigDecimal::add);</span>
+<span class="token comment">//求平均值BigDecimal average = dataList.stream().map(vo -> ObjectUtils.isEmpty(vo.getPrice()) ? new BigDecimal(0) : vo.getPrice()).reduce(BigDecimal.ZERO, BigDecimal::add).divide(BigDecimal.valueOf(dataList.size()), 2, BigDecimal.ROUND_HALF_UP);</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="9-拼接"><a href="#9-拼接" class="headerlink" title="9.拼接"></a>9.拼接</h3><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">String</span> nameJoin <span class="token operator">=</span> dataList<span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token class-name">T</span><span class="token operator">::</span><span class="token function">getName</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">collect</span><span class="token punctuation">(</span><span class="token class-name">Collectors</span><span class="token punctuation">.</span><span class="token function">joining</span><span class="token punctuation">(</span><span class="token string">","</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h3 id="10-归集"><a href="#10-归集" class="headerlink" title="10.归集"></a>10.归集</h3><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">T</span><span class="token punctuation">></span></span> mapNameObject <span class="token operator">=</span> dataList<span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">collect</span><span class="token punctuation">(</span><span class="token class-name">Collectors</span><span class="token punctuation">.</span><span class="token function">toMap</span><span class="token punctuation">(</span><span class="token class-name">T</span><span class="token operator">::</span><span class="token function">getName</span><span class="token punctuation">,</span> item <span class="token operator">-></span> item<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h3 id="11-映射Map"><a href="#11-映射Map" class="headerlink" title="11.映射Map"></a>11.映射Map</h3><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">></span></span> strList <span class="token operator">=</span> <span class="token class-name">Arrays</span><span class="token punctuation">.</span><span class="token function">asList</span><span class="token punctuation">(</span><span class="token string">"1,2,3"</span><span class="token punctuation">,</span> <span class="token string">"4,5,6"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">></span></span> newStrList <span class="token operator">=</span> strList<span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">flatMap</span><span class="token punctuation">(</span>item <span class="token operator">-></span> <span class="token punctuation">&#123;</span>  <span class="token keyword">return</span> <span class="token class-name">Arrays</span><span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span>item<span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span><span class="token string">","</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">collect</span><span class="token punctuation">(</span><span class="token class-name">Collectors</span><span class="token punctuation">.</span><span class="token function">toList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h3 id="12-搜索"><a href="#12-搜索" class="headerlink" title="12.搜索"></a>12.搜索</h3><pre class="line-numbers language-java" data-language="java"><code class="language-java">originData<span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span>data <span class="token operator">-></span> <span class="token class-name">Boolean</span><span class="token punctuation">.</span>FALSE <span class="token operator">?</span> data<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>dto<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">:</span>data<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">contains</span><span class="token punctuation">(</span>dto    <span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">collect</span><span class="token punctuation">(</span><span class="token class-name">Collectors</span><span class="token punctuation">.</span><span class="token function">toList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
                 
             </div>
@@ -469,7 +492,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://yangxiaodg.github.io/2022/11/04/zai-hexo-zhong-wu-tong-shi-yong-ben-di-tu-pian/">https://yangxiaodg.github.io/2022/11/04/zai-hexo-zhong-wu-tong-shi-yong-ben-di-tu-pian/</a>
+                    <a href="https://yangxiaodg.github.io/2022/11/04/java8stream-shi-zhan-xi-lie/">https://yangxiaodg.github.io/2022/11/04/java8stream-shi-zhan-xi-lie/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -507,8 +530,16 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/hexo/">
-                                    <span class="chip bg-color">hexo</span>
+                                <a href="/tags/jdk1-8/">
+                                    <span class="chip bg-color">jdk1.8</span>
+                                </a>
+                            
+                                <a href="/tags/stream/">
+                                    <span class="chip bg-color">stream</span>
+                                </a>
+                            
+                                <a href="/tags/lambda%E6%93%8D%E4%BD%9C/">
+                                    <span class="chip bg-color">lambda操作</span>
                                 </a>
                             
                         </div>
@@ -587,9 +618,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2022/11/04/java8stream-shi-zhan-xi-lie/">
                     <div class="card-image">
@@ -607,9 +639,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-11-04
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-11-04
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -622,6 +654,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -648,19 +681,19 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/11/04/gan-shou-java8-hou-lambda-zhi-mei/">
+                <a href="/2022/11/04/zai-hexo-zhong-wu-tong-shi-yong-ben-di-tu-pian/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="感受java8后lambda之美">
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="在hexo中无痛使用本地图片">
                         
-                        <span class="card-title">感受java8后lambda之美</span>
+                        <span class="card-title">在hexo中无痛使用本地图片</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            java8最大的特性就是引入Lambda表达式，即函数式编程，可以将行为进行传递。
+                            在 hexo 中使用本地图片是件非常让人纠结的事情，在 markdown 里的图片地址似乎永远无法和最后生成的网页保持一致。
                         
                     </div>
                     <div class="publish-info">
@@ -671,8 +704,8 @@
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/java/" class="post-category">
-                                    java
+                            <a href="/categories/hexo/" class="post-category">
+                                    hexo
                                 </a>
                             
                             
@@ -682,16 +715,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/jdk1-8/">
-                        <span class="chip bg-color">jdk1.8</span>
-                    </a>
-                    
-                    <a href="/tags/lambda/">
-                        <span class="chip bg-color">lambda</span>
-                    </a>
-                    
-                    <a href="/tags/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/">
-                        <span class="chip bg-color">函数式编程</span>
+                    <a href="/tags/hexo/">
+                        <span class="chip bg-color">hexo</span>
                     </a>
                     
                 </div>
