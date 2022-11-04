@@ -4,8 +4,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="标签: 八股文, 杨晓东&amp;Blog">
-    <meta name="description" content="一点一滴每一天">
+    <meta name="keywords" content="为什么Spring和IDEA都不推荐使用@Autowired注解, 杨晓东&amp;Blog">
+    <meta name="description" content="为什么Spring和IDEA都不推荐使用@Autowired注解">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +17,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>标签: 八股文 | 杨晓东&amp;Blog</title>
+    <title>为什么Spring和IDEA都不推荐使用@Autowired注解 | 杨晓东&amp;Blog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
     
 
@@ -330,327 +330,496 @@
 
 </header>
 
-    <div class="bg-cover pd-header about-cover">
-    <div class="container">
-    <div class="row">
-    <div class="col s10 offset-s1 m8 offset-m2 l8 offset-l2">
-        <div class="brand">
-            <div class="title center-align">
-                
-                爱生活,爱工作,爱火锅
-                
-            </div>
+    
 
-            <div class="description center-align">
-                
-                <span id="subtitle"></span>
-                <script src="/libs/typed/typed.js"></script>
-                <script>
-                    var typed = new Typed("#subtitle", {
-                        strings: [ 
-                            
-                                "从来没有真正的绝境, 只有心灵的迷途",
-                            
-                                "Never really desperate, only the lost of the soul",
-                            
-                        ],
-                        startDelay: 300,
-                        typeSpeed: 100,
-                        loop: true,
-                        backSpeed: 50,
-                        showCursor: true
-                    });
-                </script>
-                
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/16.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">为什么Spring和IDEA都不推荐使用@Autowired注解</h1>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
+
+
+
+<main class="post-container content">
+
+    
+    <div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/aop/">
+                                <span class="chip bg-color">aop</span>
+                            </a>
+                        
+                            <a href="/tags/%E6%B3%A8%E8%A7%A3/">
+                                <span class="chip bg-color">注解</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/java/" class="post-category">
+                                java
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2022-11-04
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.min.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <p>大家在使用IDEA开发的时候有没有注意到过一个提示，在字段上使用Spring的依赖注入注解<code>@Autowired</code>后会出现如下警告  </p>
+<blockquote>
+<p>Field injection is not recommended (字段注入是不被推荐的)</p>
+</blockquote>
+<p>但是使用<code>@Resource</code>却不会出现此提示</p>
+<p>网上文章大部分都是介绍两者的区别，没有提到为什么，当时想了好久想出了可能的原因，今天来总结一下</p>
+<h2 id="Spring常见的DI方式"><a href="#Spring常见的DI方式" class="headerlink" title="Spring常见的DI方式"></a>Spring常见的DI方式</h2><ul>
+<li> 构造器注入：利用构造方法的参数注入依赖</li>
+<li> Setter注入：调用Setter的方法注入依赖</li>
+<li> 字段注入：在字段上使用<code>@Autowired/Resource</code>注解</li>
+</ul>
+<h3 id="Autowired-VS-Resource"><a href="#Autowired-VS-Resource" class="headerlink" title="@Autowired VS @Resource"></a>@Autowired VS @Resource</h3><p>事实上，他们的基本功能都是通过注解实现依赖注入，只不过<code>@Autowired</code>是<code>Spring</code>定义的，而<code>@Resource</code>是<code>JSR-250</code>定义的。大致功能基本相同，但是还有一些细节不同：</p>
+<ul>
+<li> 依赖识别方式：<code>@Autowired</code>默认是byType可以使用<code>@Qualifier</code>指定Name，<code>@Resource</code>默认ByName如果找不到则ByType</li>
+<li> 适用对象：<code>@Autowired</code>可以对构造器、方法、参数、字段使用，<code>@Resource</code>只能对方法、字段使用</li>
+<li> 提供方：<code>@Autowired</code>是Spring提供的，<code>@Resource</code>是JSR-250提供的</li>
+</ul>
+<h2 id="各种DI方式的优缺点"><a href="#各种DI方式的优缺点" class="headerlink" title="各种DI方式的优缺点"></a>各种DI方式的优缺点</h2><p>参考Spring官方文档，建议了如下的使用场景：</p>
+<ul>
+<li> 构造器注入：强依赖性（即必须使用此依赖），不变性（各依赖不会经常变动）</li>
+<li> Setter注入：可选（没有此依赖也可以工作），可变（依赖会经常变动）</li>
+<li> Field注入：大多数情况下尽量少使用字段注入，一定要使用的话， @Resource相对@Autowired对IoC容器的耦合更低</li>
+</ul>
+<h2 id="Field注入的缺点"><a href="#Field注入的缺点" class="headerlink" title="Field注入的缺点"></a>Field注入的缺点</h2><ul>
+<li> 不能像构造器那样注入不可变的对象</li>
+<li> 依赖对外部不可见，外界可以看到构造器和setter，但无法看到私有字段，自然无法了解所需依赖</li>
+<li> 会导致组件与IoC容器紧耦合（这是最重要的原因，离开了IoC容器去使用组件，在注入依赖时就会十分困难）</li>
+<li> 导致单元测试也必须使用IoC容器，原因同上</li>
+<li> 依赖过多时不够明显，比如我需要10个依赖，用构造器注入就会显得庞大，这时候应该考虑一下此组件是不是违反了单一职责原则</li>
+</ul>
+<h3 id="为什么IDEA只对-Autowired警告"><a href="#为什么IDEA只对-Autowired警告" class="headerlink" title="为什么IDEA只对@Autowired警告"></a>为什么IDEA只对@Autowired警告</h3><p>Field注入虽然有很多缺点，但它的好处也不可忽略：那就是太方便了。使用构造器或者setter注入需要写更多业务无关的代码，十分麻烦，而字段注入大幅简化了它们。并且绝大多数情况下业务代码和框架就是强绑定的，完全松耦合只是一件理想上的事，牺牲了敏捷度去过度追求松耦合反而得不偿失。</p>
+<blockquote>
+<p>那么问题来了，为什么IDEA只对@Autowired警告，却对@Resource视而不见呢？</p>
+</blockquote>
+<p>个人认为，就像我们前面提到过的：@Autowired是Spring提供的，它是特定IoC提供的特定注解，这就导致了应用与框架的强绑定，一旦换用了其他的IoC框架，是不能够支持注入的。</p>
+<p>而 @Resource是JSR-250提供的，它是Java标准，我们使用的IoC容器应当去兼容它，这样即使更换容器，也可以正常工作。</p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">yangxiaodg</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://yangxiaodg.github.io/2022/11/04/wei-shi-me-spring-he-idea-du-bu-tui-jian-shi-yong-autowired-zhu-jie/">https://yangxiaodg.github.io/2022/11/04/wei-shi-me-spring-he-idea-du-bu-tui-jian-shi-yong-autowired-zhu-jie/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">yangxiaodg</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/aop/">
+                                    <span class="chip bg-color">aop</span>
+                                </a>
+                            
+                                <a href="/tags/%E6%B3%A8%E8%A7%A3/">
+                                    <span class="chip bg-color">注解</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script>
-    // 每天切换 banner 图.  Switch banner image every day.
-    var bannerUrl = "/medias/banner/" + new Date().getDay() + '.jpg';
-    $('.bg-cover').css('background-image', 'url(' + bannerUrl + ')');
+    $(function () {
+        $('.tabs').tabs();
+    });
 </script>
 
-
+            
+        </div>
     </div>
-</div>
-
-<main class="content">
 
     
 
-<div id="tags" class="container chip-container">
-    <div class="card">
-        <div class="card-content">
-            <div class="tag-title center-align">
-                <i class="fas fa-tags"></i>&nbsp;&nbsp;文章标签
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
             </div>
-            <div class="tag-chips">
-                
-                
-                <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" title="设计模式: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="设计模式" style="background-color: #F9EBEA;">设计模式
-                        <span class="tag-length">1</span>
-                    </span>
+            <div class="card">
+                <a href="/2022/11/04/wei-shi-me-spring-he-idea-du-bu-tui-jian-shi-yong-autowired-zhu-jie/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="为什么Spring和IDEA都不推荐使用@Autowired注解">
+                        
+                        <span class="card-title">为什么Spring和IDEA都不推荐使用@Autowired注解</span>
+                    </div>
                 </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            为什么Spring和IDEA都不推荐使用@Autowired注解
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-11-04
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/java/" class="post-category">
+                                    java
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
                 
-                
-                <a href="/tags/hexo/" title="hexo: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="hexo" style="background-color: #F5EEF8;">hexo
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/jdk1-8/" title="jdk1.8: 2">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="jdk1.8" style="background-color: #D5F5E3;">jdk1.8
-                        <span class="tag-length">2</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/lambda/" title="lambda: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="lambda" style="background-color: #E8F8F5;">lambda
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/" title="函数式编程: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="函数式编程" style="background-color: #FEF9E7;">函数式编程
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/stream/" title="stream: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="stream" style="background-color: #F8F9F9;">stream
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/lambda%E6%93%8D%E4%BD%9C/" title="lambda操作: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="lambda操作" style="background-color: #82E0AA;">lambda操作
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/git/" title="git: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="git" style="background-color: #D7BDE2;">git
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/%E4%BB%A3%E7%A0%81%E5%90%88%E5%B9%B6/" title="代码合并: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="代码合并" style="background-color: #A3E4D7;">代码合并
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/java%E5%9F%BA%E7%A1%80/" title="java基础: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="java基础" style="background-color: #85C1E9;">java基础
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" title="并发编程: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="并发编程" style="background-color: #F8C471;">并发编程
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/%E5%85%AB%E8%82%A1%E6%96%87/" title="八股文: 3">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-active "
-                            data-tagname="八股文" style="background-color: #F9E79F;">八股文
-                        <span class="tag-length">3</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/java%E8%99%9A%E6%8B%9F%E6%9C%BA/" title="java虚拟机: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="java虚拟机" style="background-color: #FFF;">java虚拟机
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/sql%E4%BC%98%E5%8C%96/" title="sql优化: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="sql优化" style="background-color: #FFF;">sql优化
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/" title="程序设计: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="程序设计" style="background-color: #E8F8F5;">程序设计
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/aop/" title="aop: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="aop" style="background-color: #F9E79F;">aop
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/%E6%B3%A8%E8%A7%A3/" title="注解: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="注解" style="background-color: #F8F9F9;">注解
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/aop/">
+                        <span class="chip bg-color">aop</span>
+                    </a>
+                    
+                    <a href="/tags/%E6%B3%A8%E8%A7%A3/">
+                        <span class="chip bg-color">注解</span>
+                    </a>
+                    
+                </div>
                 
             </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2022/11/04/23-chong-she-ji-mo-shi-de-tong-su-jie-shi/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="23种设计模式的通俗解释">
+                        
+                        <span class="card-title">23种设计模式的通俗解释</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            工厂方法 建造者模式 抽象工厂
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-11-04
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/java/" class="post-category">
+                                    java
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+                        <span class="chip bg-color">设计模式</span>
+                    </a>
+                    
+                    <a href="/tags/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/">
+                        <span class="chip bg-color">程序设计</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+
+  <!-- 是否加载使用自带的 prismjs. -->
+  <script type="text/javascript" src="/libs/prism/prism.min.js"></script>
+
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
         </div>
     </div>
 </div>
 
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
     
 
-    <article id="articles" class="container articles">
-        <div class="row tags-posts">
-            
-            
-            <div class="article tag-post col s12 m6 l4" data-tags="并发编程, 八股文" data-aos="fade-up">
-                <div class="card">
-                    <a href="/2022/11/04/java-bing-fa-bian-cheng-ba-gu-wen/">
-                        <div class="card-image tag-image">
-                            
-                            
-                            <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="Java并发编程八股文">
-                            
-                            <span class="card-title">Java并发编程八股文</span>
-                        </div>
-                    </a>
-                    <div class="card-content article-content">
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-11-04
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/java/" class="post-category">
-                                java
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            
-            <div class="article tag-post col s12 m6 l4" data-tags="八股文, java虚拟机" data-aos="fade-up">
-                <div class="card">
-                    <a href="/2022/11/04/java-xu-ni-ji-ba-gu-wen/">
-                        <div class="card-image tag-image">
-                            
-                            
-                            <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="Java虚拟机八股文">
-                            
-                            <span class="card-title">Java虚拟机八股文</span>
-                        </div>
-                    </a>
-                    <div class="card-content article-content">
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-11-04
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/java/" class="post-category">
-                                java
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            
-            <div class="article tag-post col s12 m6 l4" data-tags="java基础, 八股文" data-aos="fade-up">
-                <div class="card">
-                    <a href="/2022/11/04/java-ji-chu-pian-de-ba-gu-wen/">
-                        <div class="card-image tag-image">
-                            
-                            
-                            <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="Java基础篇的八股文">
-                            
-                            <span class="card-title">Java基础篇的八股文</span>
-                        </div>
-                    </a>
-                    <div class="card-content article-content">
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-11-04
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/java/" class="post-category">
-                                java
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-        </div>
-    </article>
 </main>
 
 
