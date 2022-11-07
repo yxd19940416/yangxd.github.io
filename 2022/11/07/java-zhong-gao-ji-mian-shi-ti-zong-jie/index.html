@@ -1,0 +1,1239 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="java中高级面试题总结, 杨晓东&amp;Blog">
+    <meta name="description" content="java中高级面试题总结">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>java中高级面试题总结 | 杨晓东&amp;Blog</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    
+
+
+    <!-- bg-cover style     -->
+
+
+
+<link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+<link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+<link rel="stylesheet" type="text/css" href="/css/matery.css">
+<link rel="stylesheet" type="text/css" href="/css/my.css">
+<link rel="stylesheet" type="text/css" href="/css/dark.css" media="none" onload="if(media!='all')media='all'">
+
+
+
+
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+    <link rel="stylesheet" href="/css/post.css">
+
+
+
+
+    
+
+
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">杨晓东&amp;Blog</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+  <li>
+    <a href="javascript:;" class="waves-effect waves-light" onclick="switchNightMode()" title="深色/浅色模式" >
+      <i id="sum-moon-icon" class="fas fa-sun" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">杨晓东&amp;Blog</div>
+        <div class="logo-desc">
+            
+            一点一滴每一天
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/yangxiaodg" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/yangxiaodg" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/19.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">java中高级面试题总结</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/java%E9%9D%A2%E8%AF%95/">
+                                <span class="chip bg-color">java面试</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/java/" class="post-category">
+                                java
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2022-11-07
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2022-11-07
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    4.4k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    17 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.min.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <p>目录</p>
+<p>[前言][Link 1]</p>
+<p>[Part 1 java基础][Part 1 java]</p>
+<p>[1.1. JDK的基本的类库][1.1. JDK]</p>
+<p>[1.2. java虚拟机相关知识点][1.2. java]</p>
+<p>[1.4. Unsafe类][1.4. Unsafe]</p>
+<p>[1.5. Session、cookie区别][1.5. Session_cookie]</p>
+<p>[1.6. 权限问题][1.6.]</p>
+<p>[1.7. 安全问题][1.7.]</p>
+<p>[1.8 HashMap实现原理][1.8 HashMap]</p>
+<p>[1.9. HashMap和HashTable的区别][1.9. HashMap_HashTable]</p>
+<p>[1.9. ArrayList和LinkedList的区别][1.9. ArrayList_LinkedList]</p>
+<p>[1.10 设计模式 ][1.10 _]</p>
+<p>[1.12 NIO][]</p>
+<p>[Part 2 多线程问题][Part 2]</p>
+<p>[多线程问题（必问）][Link 2]</p>
+<p>[Concurrenthashmap原理分析有用][Concurrenthashmap]</p>
+<p>[Volitile关键字的作用][Volitile]</p>
+<p>[Part 3 Spring与ORM映射框架][Part 3 Spring_ORM]</p>
+<p>[面试题集锦：][Link 3]</p>
+<p>[3.1. Spring作用域][3.1. Spring]</p>
+<p>[3.2. SpringMVC面试题][3.2. SpringMVC]</p>
+<p>[SpringMVC的流程][SpringMVC]</p>
+<p>[SpringMVC与Struts2的区别][SpringMVC_Struts2]</p>
+<p>[过滤器与拦截器区别][Link 4]</p>
+<p>[4.4. Mybatis面试题][4.4. Mybatis]</p>
+<p>[#{}和${}的区别是什么？][Link 5]</p>
+<p>[Xml映射文件中，除了常见的select|insert|updae|delete标签之外，还有哪些标签？][Xml_select_insert_updae_delete]</p>
+<p>[Mybatis批量插入数据][Mybatis]</p>
+<p>[Part 4 SpringBoot相关][Part 4 SpringBoot]</p>
+<p>[Springboot面试题集锦：][Springboot]</p>
+<p>[Springboot优点][Springboot 1]</p>
+<p>[springboot核心注解][springboot]</p>
+<p>[Spring Boot 支持哪些日志框架][Spring Boot]</p>
+<p>[Part 5 数据库相关][Part 5]</p>
+<p>[面试题集锦：][Link 3]</p>
+<p>[什么是数据库约束,常见的约束有哪几种?][Link 6]</p>
+<p>[乐观锁和悲观锁][Link 7]</p>
+<p>[什么是事务][Link 8]</p>
+<p>[事务四大特性][Link 9]</p>
+<p>[事务的并发问题][Link 10]</p>
+<p>[事务的隔离级别][Link 11]</p>
+<p>[事务的传播行为][Link 12]</p>
+<p>[sql编写以及优化（必问）][sql]</p>
+<p>[Part 5 其它问题][Part 5 1]</p>
+<p>[怎么设计一个高并发系统（比如100万人同时抢票）][100]</p>
+<p>[Spring cloud（有些公司的项目用不到这个）][Spring cloud]</p>
+<p>[java性能优化][java]</p>
+<p>[java8的新特性][java8]</p>
+<p>[redis相关问题][redis]</p>
+<p>[linux常用命令][linux]</p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这篇文章是我近期面试遇到的一些问题（技术类），做的一个总结。</p>
+<p>注意：</p>
+<p>1.有些问题没有标准答案，需要读者朋友在网上查找。</p>
+<p>2.有些问题答案太长，三言两语道不尽，直接给了链接，可以复制链接去搜索。</p>
+<p>3.有些技术涉及到很多问题，我给了总结的链接之后，又给大家列出了我面试遇到的题目</p>
+<h1 id="Part-1-java基础"><a href="#Part-1-java基础" class="headerlink" title="Part 1 java基础"></a>Part 1 java基础</h1><h2 id="1-1-JDK的基本的类库"><a href="#1-1-JDK的基本的类库" class="headerlink" title="1.1. JDK的基本的类库"></a>1.1. JDK的基本的类库</h2><p>存放位置：jre/lib/rt.jar（这个问题很简单，但是很多人答不上来！）</p>
+<p>常用的 Java 核心包 (Java Core Package)</p>
+<p>java.lang Java 编程语言的基本类库（Object、String、StringBuffer、StringBuilder、System、Runtime、Throwable、Exception、Error、Thread、Math等）</p>
+<p>java.io 通过数据流、对象序列以及文件系统实现的系统输入、输出</p>
+<p>java.util 集合类、时间处理模式、日期时间工具等各类常用工具包</p>
+<p>其它还有</p>
+<p>java.sql 访问和处理来自于 Java 标准数据源数据的类</p>
+<p>java.test 以一种独立于自然语言的方式处理文本、日期、数字和消息的类和接口</p>
+<p>java.math简明的整数算术以及十进制算术的基本函数</p>
+<h2 id="1-2-java虚拟机相关知识点"><a href="#1-2-java虚拟机相关知识点" class="headerlink" title="1.2. java虚拟机相关知识点"></a>1.2. java虚拟机相关知识点</h2><p>[<a target="_blank" rel="noopener" href="https://shuhao.blog.csdn.net/article/details/113524369][https_shuhao.blog.csdn.net_article_details_113524369]">https://shuhao.blog.csdn.net/article/details/113524369][https_shuhao.blog.csdn.net_article_details_113524369]</a></p>
+<h2 id="1-4-Unsafe类"><a href="#1-4-Unsafe类" class="headerlink" title="1.4. Unsafe类"></a>1.4. Unsafe类</h2><p>参考：[<a target="_blank" rel="noopener" href="https://www.cnblogs.com/thomas12112406/p/6510787.html][https_www.cnblogs.com_thomas12112406_p_6510787.html]">https://www.cnblogs.com/thomas12112406/p/6510787.html][https_www.cnblogs.com_thomas12112406_p_6510787.html]</a></p>
+<p>Unsafe类使Java拥有了像C语言的指针一样操作内存空间的能力，同时也带来了指针的问题</p>
+<h2 id="1-5-Session、cookie区别"><a href="#1-5-Session、cookie区别" class="headerlink" title="1.5. Session、cookie区别"></a>1.5. Session、cookie区别</h2><p>1、cookie数据存放在客户端，session数据放在服务器上。</p>
+<p>2、cookie不是很安全，别人可以分析存放在本地的cookie并进行cookie欺骗，考虑到安全应当使用session。</p>
+<p>3、session会在一定时间内保存在服务器上，当访问增多，会比较占用你服务器的性能，考虑性能应当使用cookie。</p>
+<p>4、不同浏览器对cookie的数据大小限制不同，个数限制也不相同。</p>
+<p>5、可以考虑将登陆信息等重要信息存放为session，不重要的信息可以放在cookie中。</p>
+<h2 id="1-6-权限问题"><a href="#1-6-权限问题" class="headerlink" title="1.6. 权限问题"></a>1.6. 权限问题</h2><p>参考：[<a target="_blank" rel="noopener" href="https://blog.csdn.net/Y0Q2T57s/article/details/82921270][https_blog.csdn.net_Y0Q2T57s_article_details_82921270]">https://blog.csdn.net/Y0Q2T57s/article/details/82921270][https_blog.csdn.net_Y0Q2T57s_article_details_82921270]</a></p>
+<h2 id="1-7-安全问题"><a href="#1-7-安全问题" class="headerlink" title="1.7. 安全问题"></a>1.7. 安全问题</h2><p>参考：[<a target="_blank" rel="noopener" href="https://blog.csdn.net/wojiushiwo945you/article/details/77920165][https_blog.csdn.net_wojiushiwo945you_article_details_77920165]">https://blog.csdn.net/wojiushiwo945you/article/details/77920165][https_blog.csdn.net_wojiushiwo945you_article_details_77920165]</a></p>
+<p>shiro：[<a target="_blank" rel="noopener" href="https://www.cnblogs.com/WUXIAOCHANG/p/10886534.html][https_www.cnblogs.com_WUXIAOCHANG_p_10886534.html]">https://www.cnblogs.com/WUXIAOCHANG/p/10886534.html][https_www.cnblogs.com_WUXIAOCHANG_p_10886534.html]</a></p>
+<p>[<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq/_37254736/article/details/99350029][https_blog.csdn.net_qq_37254736_article_details_99350029]">https://blog.csdn.net/qq\_37254736/article/details/99350029][https_blog.csdn.net_qq_37254736_article_details_99350029]</a></p>
+<h2 id="1-8-HashMap实现原理"><a href="#1-8-HashMap实现原理" class="headerlink" title="1.8 HashMap实现原理"></a>1.8 HashMap实现原理</h2><p>参考：[<a target="_blank" rel="noopener" href="https://shuhao.blog.csdn.net/article/details/108733952][https_shuhao.blog.csdn.net_article_details_108733952]">https://shuhao.blog.csdn.net/article/details/108733952][https_shuhao.blog.csdn.net_article_details_108733952]</a></p>
+<h2 id="1-9-HashMap和HashTable的区别"><a href="#1-9-HashMap和HashTable的区别" class="headerlink" title="1.9. HashMap和HashTable的区别"></a>1.9. HashMap和HashTable的区别</h2><p>1.HashMap继承了AbstractMap，HashTable继承Dictionary抽象类，两者均实现Map接口</p>
+<p>2.HashMap和Hashtable的底层实现都是数组+链表结构实现、</p>
+<p>3.Hashtable是线程安全，HashMap是非线程安全</p>
+<p>HashMap的性能会高于Hashtable，我们平时使用时若无特殊需求建议使用HashMap，在多线程环境下若使用HashMap需要使用Collections.synchronizedMap()方法来获取一个线程安全的集合（Collections.synchronizedMap()实现原理是Collections定义了一个SynchronizedMap的内部类，这个类实现了Map接口，在调用方法时使用synchronized来保证线程同步</p>
+<p>4.两者计算hash的方法不同：</p>
+<p>Hashtable计算hash是直接使用key的hashcode对table数组的长度直接进行取模</p>
+<p>HashMap计算hash对key的hashcode进行了二次hash，以获得更好的散列值，然后对table数组长度取摸</p>
+<p>5.HashMap可以使用null作为key，不过建议还是尽量避免这样使用。HashMap以null作为key时，总是存储在table数组的第一个节点上。而Hashtable则不允许null作为key</p>
+<p>6.HashMap的初始容量为16，Hashtable初始容量为11，两者的填充因子默认都是0.75</p>
+<p>7.HashMap扩容时是当前容量翻倍即:capacity2，Hashtable扩容时是容量翻倍+1即:capacity2+1</p>
+<h2 id="1-9-ArrayList和LinkedList的区别"><a href="#1-9-ArrayList和LinkedList的区别" class="headerlink" title="1.9. ArrayList和LinkedList的区别"></a>1.9. ArrayList和LinkedList的区别</h2><p>1、ArrayList和LinkedList可想从名字分析，它们一个是Array(动态数组)的数据结构，一个是Link(链表)的数据结构，此外，它们两个都是对List接口的实现。</p>
+<p>前者是数组队列，相当于动态数组；后者为双向链表结构，也可当作堆栈、队列、双端队列</p>
+<p>2、当随机访问List时（get和set操作），ArrayList比LinkedList的效率更高，因为LinkedList是线性的数据存储方式，所以需要移动指针从前往后依次查找。</p>
+<p>3、当对数据进行增加和删除的操作时(add和remove操作)，LinkedList比ArrayList的效率更高，因为ArrayList是数组，所以在其中进行增删操作时，会对操作点之后所有数据的下标索引造成影响，需要进行数据的移动。</p>
+<p>4、从利用效率来看，ArrayList自由性较低，因为它需要手动的设置固定大小的容量，但是它的使用比较方便，只需要创建，然后添加数据，通过调用下标进行使用；而LinkedList自由性较高，能够动态的随数据量的变化而变化，但是它不便于使用。</p>
+<p>5、ArrayList主要控件开销在于需要在lList列表预留一定空间；而LinkList主要控件开销在于需要存储结点信息以及结点指针信息。</p>
+<h2 id="1-10-设计模式"><a href="#1-10-设计模式" class="headerlink" title="1.10 设计模式"></a>1.10 设计模式</h2><p>参考：[<a target="_blank" rel="noopener" href="http://c.biancheng.net/design/_pattern/][http_c.biancheng.net_design_pattern]">http://c.biancheng.net/design\_pattern/][http_c.biancheng.net_design_pattern]</a></p>
+<h2 id="1-12-NIO"><a href="#1-12-NIO" class="headerlink" title="1.12 NIO"></a>1.12 NIO</h2><p>[Java中的IO与NIO面试题][Java_IO_NIO]</p>
+<h1 id="Part-2-多线程问题"><a href="#Part-2-多线程问题" class="headerlink" title="Part 2 多线程问题"></a>Part 2 多线程问题</h1><h2 id="多线程问题（必问）"><a href="#多线程问题（必问）" class="headerlink" title="多线程问题（必问）"></a>多线程问题（必问）</h2><p>多线程的面试题太多了，下面的三个链接总结的很全面很详细：</p>
+<p>[<a target="_blank" rel="noopener" href="https://www.cnblogs.com/Jansens520/p/8624708.html][https_www.cnblogs.com_Jansens520_p_8624708.html]">https://www.cnblogs.com/Jansens520/p/8624708.html][https_www.cnblogs.com_Jansens520_p_8624708.html]</a></p>
+<p>[<a target="_blank" rel="noopener" href="https://www.cnblogs.com/wangjintao-0623/p/9727234.html][https_www.cnblogs.com_wangjintao-0623_p_9727234.html]">https://www.cnblogs.com/wangjintao-0623/p/9727234.html][https_www.cnblogs.com_wangjintao-0623_p_9727234.html]</a></p>
+<p>[<a target="_blank" rel="noopener" href="https://blog.csdn.net/zl1zl2zl3/article/details/81868173][https_blog.csdn.net_zl1zl2zl3_article_details_81868173]">https://blog.csdn.net/zl1zl2zl3/article/details/81868173][https_blog.csdn.net_zl1zl2zl3_article_details_81868173]</a></p>
+<h2 id="Concurrenthashmap原理分析有用"><a href="#Concurrenthashmap原理分析有用" class="headerlink" title="Concurrenthashmap原理分析有用"></a>Concurrenthashmap原理分析有用</h2><p>HashTable容器在竞争激烈的并发环境下表现出效率低下的原因，是因为所有访问HashTable的线程都必须竞争同一把锁，那假如容器里有多把锁，每一把锁用于锁容器其中一部分数据，那么当多线程访问容器里不同数据段的数据时，线程间就不会存在锁竞争，从而可以有效的提高并发访问效率，这就是ConcurrentHashMap所使用的锁分段技术，首先将数据分成一段一段的存储，然后给每一段数据配一把锁，当一个线程占用锁访问其中一个段数据的时候，其他段的数据也能被其他线程访问。</p>
+<h2 id="Volitile关键字的作用"><a href="#Volitile关键字的作用" class="headerlink" title="Volitile关键字的作用"></a>Volitile关键字的作用</h2><p>参考：[<a target="_blank" rel="noopener" href="https://www.cnblogs.com/xd502djj/p/9873067.html][https_www.cnblogs.com_xd502djj_p_9873067.html]">https://www.cnblogs.com/xd502djj/p/9873067.html][https_www.cnblogs.com_xd502djj_p_9873067.html]</a></p>
+<h1 id="Part-3-Spring与ORM映射框架"><a href="#Part-3-Spring与ORM映射框架" class="headerlink" title="Part 3 Spring与ORM映射框架"></a>Part 3 Spring与ORM映射框架</h1><h2 id="面试题集锦："><a href="#面试题集锦：" class="headerlink" title="面试题集锦："></a>面试题集锦：</h2><p>[<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq/_34337272/article/details/90955736][https_blog.csdn.net_qq_34337272_article_details_90955736]">https://blog.csdn.net/qq\_34337272/article/details/90955736][https_blog.csdn.net_qq_34337272_article_details_90955736]</a></p>
+<h2 id="3-1-Spring作用域"><a href="#3-1-Spring作用域" class="headerlink" title="3.1. Spring作用域"></a>3.1. Spring作用域</h2><p>singleton：单例模式，当spring创建applicationContext容器的时候，spring会欲初始化所有的该作用域实例，加上lazy-init就可以避免预处理；</p>
+<p>prototype：原型模式，每次通过getBean获取该bean就会新产生一个实例，创建后spring将不再对其管理；</p>
+<p>====下面是在web项目下才用到的===</p>
+<p>request：搞web的大家都应该明白request的域了吧，就是每次请求都新产生一个实例，和prototype不同就是创建后，接下来的管理，spring依然在监听；</p>
+<p>session：每次会话，同上；</p>
+<p>global session：全局的web域，类似于servlet中的application。</p>
+<h2 id="3-2-SpringMVC面试题"><a href="#3-2-SpringMVC面试题" class="headerlink" title="3.2. SpringMVC面试题"></a>3.2. SpringMVC面试题</h2><p>面试题集锦：</p>
+<p>[<a target="_blank" rel="noopener" href="https://blog.csdn.net/a745233700/article/details/80963758][https_blog.csdn.net_a745233700_article_details_80963758]">https://blog.csdn.net/a745233700/article/details/80963758][https_blog.csdn.net_a745233700_article_details_80963758]</a></p>
+<h2 id="SpringMVC的流程"><a href="#SpringMVC的流程" class="headerlink" title="SpringMVC的流程"></a>SpringMVC的流程</h2><p><img src="http://markdown.liangtengyu.com:9999/images//image_0aae936f.png" alt="image_0aae936f.png"><img src="http://markdown.liangtengyu.com:9999/images//image_b8bfb6ea.png" alt="image_b8bfb6ea.png"></p>
+<h2 id="SpringMVC与Struts2的区别"><a href="#SpringMVC与Struts2的区别" class="headerlink" title="SpringMVC与Struts2的区别"></a>SpringMVC与Struts2的区别</h2><p>（1）springmvc的入口是一个servlet即前端控制器（DispatchServlet），而struts2入口是一个filter过虑器（StrutsPrepareAndExecuteFilter）。</p>
+<p>（2）springmvc是基于方法开发(一个url对应一个方法)，请求参数传递到方法的形参，可以设计为单例或多例(建议单例)，struts2是基于类开发，传递参数是通过类的属性，只能设计为多例。</p>
+<p>（3）Struts采用值栈存储请求和响应的数据，通过OGNL存取数据，springmvc通过参数解析器是将request请求内容解析，并给方法形参赋值，将数据和视图封装成ModelAndView对象，最后又将ModelAndView中的模型数据通过reques域传输到页面。Jsp视图解析器默认使用jstl</p>
+<h2 id="过滤器与拦截器区别"><a href="#过滤器与拦截器区别" class="headerlink" title="过滤器与拦截器区别"></a>过滤器与拦截器区别</h2><p>①过滤器只能在容器初始化时被调用一次，在action的生命周期中，而拦截器可以多次被调用</p>
+<p>②过滤器可以对几乎所有的请求起作用，拦截器只能对action请求起作用。</p>
+<p>③过滤器不能访问action上下文、值栈里的对象，而拦截器可以访问。</p>
+<p>④过滤器依赖于servlet容器，而拦截器不依赖于servlet容器。</p>
+<p>⑤过滤器是基于函数回调，而拦截器是基于java的反射机制的。</p>
+<p>⑥过滤器不能获取IOC容器中的各个bean，而拦截器可以，这点很重要，在拦截器里注入一个service，可以调用业务逻辑。</p>
+<h2 id="4-4-Mybatis面试题"><a href="#4-4-Mybatis面试题" class="headerlink" title="4.4. Mybatis面试题"></a>4.4. Mybatis面试题</h2><p>面试题集锦：</p>
+<p>[<a target="_blank" rel="noopener" href="https://blog.csdn.net/a745233700/article/details/80977133][https_blog.csdn.net_a745233700_article_details_80977133]">https://blog.csdn.net/a745233700/article/details/80977133][https_blog.csdn.net_a745233700_article_details_80977133]</a></p>
+<h2 id="和-的区别是什么？"><a href="#和-的区别是什么？" class="headerlink" title="#{}和${}的区别是什么？"></a>#{}和${}的区别是什么？</h2><p>#{}是预编译处理，${}是字符串替换。</p>
+<p>Mybatis在处理#{}时，会将sql中的#{}替换为?号，调用PreparedStatement的set方法来赋值；</p>
+<p>Mybatis在处理${}时，就是把${}替换成变量的值。</p>
+<p>使用#{}可以有效的防止SQL注入，提高系统安全性。</p>
+<h2 id="Xml映射文件中，除了常见的select-insert-updae-delete标签之外，还有哪些标签？"><a href="#Xml映射文件中，除了常见的select-insert-updae-delete标签之外，还有哪些标签？" class="headerlink" title="Xml映射文件中，除了常见的select|insert|updae|delete标签之外，还有哪些标签？"></a>Xml映射文件中，除了常见的select|insert|updae|delete标签之外，还有哪些标签？</h2><p>trim | where | set | foreach | if | choose | when | otherwise | bind</p>
+<h2 id="Mybatis批量插入数据"><a href="#Mybatis批量插入数据" class="headerlink" title="Mybatis批量插入数据"></a>Mybatis批量插入数据</h2><p>可以使用foreach标签</p>
+<h1 id="Part-4-SpringBoot相关"><a href="#Part-4-SpringBoot相关" class="headerlink" title="Part 4 SpringBoot相关"></a>Part 4 SpringBoot相关</h1><h2 id="Springboot面试题集锦："><a href="#Springboot面试题集锦：" class="headerlink" title="Springboot面试题集锦："></a>Springboot面试题集锦：</h2><p>[<a target="_blank" rel="noopener" href="https://blog.csdn.net/ThinkWon/article/details/104397299][https_blog.csdn.net_ThinkWon_article_details_104397299]">https://blog.csdn.net/ThinkWon/article/details/104397299][https_blog.csdn.net_ThinkWon_article_details_104397299]</a></p>
+<p>[<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/14ef39ed8ad3][https_www.jianshu.com_p_14ef39ed8ad3]">https://www.jianshu.com/p/14ef39ed8ad3][https_www.jianshu.com_p_14ef39ed8ad3]</a></p>
+<p>[<a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000016686735][https_segmentfault.com_a_1190000016686735]">https://segmentfault.com/a/1190000016686735][https_segmentfault.com_a_1190000016686735]</a></p>
+<h2 id="Springboot优点"><a href="#Springboot优点" class="headerlink" title="Springboot优点"></a>Springboot优点</h2><p>内置Tomcat、jetty，简化配置配置，restful风格</p>
+<h2 id="springboot核心注解"><a href="#springboot核心注解" class="headerlink" title="springboot核心注解"></a>springboot核心注解</h2><p>SpringbootApplication，包含3个配置springbootConfiguration、enableAutoConfiguration、componentScan</p>
+<h2 id="Spring-Boot-支持哪些日志框架"><a href="#Spring-Boot-支持哪些日志框架" class="headerlink" title="Spring Boot 支持哪些日志框架"></a>Spring Boot 支持哪些日志框架</h2><p>Spring Boot支持Java Util Logging,Log4j2,Lockback作为日志框架，如果你使用starters启动器，Spring Boot将使用Logback作为默认日志框架。无论使用哪种日志框架，Spring Boot都支持配置将日志输出到控制台或者文件中</p>
+<h1 id="Part-5-数据库相关"><a href="#Part-5-数据库相关" class="headerlink" title="Part 5 数据库相关"></a>Part 5 数据库相关</h1><h2 id="面试题集锦：-1"><a href="#面试题集锦：-1" class="headerlink" title="面试题集锦："></a>面试题集锦：</h2><p>[<a target="_blank" rel="noopener" href="https://www.cnblogs.com/wenxiaofei/p/9853682.html][https_www.cnblogs.com_wenxiaofei_p_9853682.html]">https://www.cnblogs.com/wenxiaofei/p/9853682.html][https_www.cnblogs.com_wenxiaofei_p_9853682.html]</a></p>
+<h2 id="什么是数据库约束-常见的约束有哪几种"><a href="#什么是数据库约束-常见的约束有哪几种" class="headerlink" title="什么是数据库约束,常见的约束有哪几种?"></a>什么是数据库约束,常见的约束有哪几种?</h2><p>数据库约束用于保证数据库表数据的完整性（正确性和一致性）。可以通过定义约束\索引\触发器来保证数据的完整性。</p>
+<p>总体来讲,约束可以分为:</p>
+<p>主键约束：primary key；</p>
+<p>外键约束：foreign key；</p>
+<p>唯一约束：unique；</p>
+<p>检查约束：check；</p>
+<p>空值约束：not null；</p>
+<p>默认值约束：default；</p>
+<h2 id="乐观锁和悲观锁"><a href="#乐观锁和悲观锁" class="headerlink" title="乐观锁和悲观锁"></a>乐观锁和悲观锁</h2><p>参考：[<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq/_34337272/article/details/81072874][https_blog.csdn.net_qq_34337272_article_details_81072874]">https://blog.csdn.net/qq\_34337272/article/details/81072874][https_blog.csdn.net_qq_34337272_article_details_81072874]</a></p>
+<h2 id="什么是事务"><a href="#什么是事务" class="headerlink" title="什么是事务"></a>什么是事务</h2><p>事务是对数据库中一系列操作进行统一的回滚或者提交的操作，主要用来保证数据的完整性和一致性。</p>
+<h2 id="事务四大特性"><a href="#事务四大特性" class="headerlink" title="事务四大特性"></a>事务四大特性</h2><p>原子性（Atomicity）: 原子性是指事务包含的所有操作要么全部成功，要么全部失败回滚，因此事务的操作如果成功就必须要完全应用到数据库，如果操作失败则不能对数据库有任何影响。</p>
+<p>一致性（Consistency）: 事务开始前和结束后，数据库的完整性约束没有被破坏。比如A向B转账，不可能A扣了钱，B却没收到。</p>
+<p>隔离性（Isolation）: 隔离性是当多个用户并发访问数据库时，比如操作同一张表时，数据库为每一个用户开启的事务，不能被其他事务的操作所干扰，多个并发事务之间要相互隔离。同一时间，只允许一个事务请求同一数据，不同的事务之间彼此没有任何干扰。比如A正在从一张银行卡中取钱，在A取钱的过程结束前，B不能向这张卡转账。</p>
+<p>持久性（Durability）: 持久性是指一个事务一旦被提交了，那么对数据库中的数据的改变就是永久性的，即便是在数据库系统遇到故障的情况下也不会丢失提交事务的操作。</p>
+<h2 id="事务的并发问题"><a href="#事务的并发问题" class="headerlink" title="事务的并发问题"></a>事务的并发问题</h2><p>1、脏读：事务A读取了事务B更新的数据，然后B回滚操作，那么A读取到的数据是脏数据</p>
+<p>2、不可重复读：事务 A 多次读取同一数据，事务 B 在事务A多次读取的过程中，对数据作了更新并提交，导致事务A多次读取同一数据时，结果因此本事务先后两次读到的数据结果会不一致。</p>
+<p>3、幻读：幻读解决了不重复读，保证了同一个事务里，查询的结果都是事务开始时的状态（一致性）。</p>
+<p>例如：事务T1对一个表中所有的行的某个数据项做了从“1”修改为“2”的操作 这时事务T2又对这个表中插入了一行数据项，而这个数据项的数值还是为“1”并且提交给数据库。而操作事务T1的用户如果再查看刚刚修改的数据，会发现还有跟没有修改一样，其实这行是从事务T2中添加的，就好像产生幻觉一样，这就是发生了幻读。</p>
+<h2 id="事务的隔离级别"><a href="#事务的隔离级别" class="headerlink" title="事务的隔离级别"></a>事务的隔离级别</h2><ol>
+<li><p>读未提交：另一个事务修改了数据，但尚未提交，而本事务中的SELECT会读到这些未被提交的数据脏读</p>
+</li>
+<li><p>不可重复读：事务 A 多次读取同一数据，事务 B 在事务A多次读取的过程中，对数据作了更新并提交，导致事务A多次读取同一数据时，结果因此本事务先后两次读到的数据结果会不一致。</p>
+</li>
+<li><p>可重复读：在同一个事务里，SELECT的结果是事务开始时时间点的状态，因此，同样的SELECT操作读到的结果会是一致的。但是，会有幻读现象</p>
+</li>
+<li><p>串行化：最高的隔离级别，在这个隔离级别下，不会产生任何异常。并发的事务，就像事务是在一个个按照顺序执行一样</p>
+</li>
+</ol>
+<h2 id="事务的传播行为"><a href="#事务的传播行为" class="headerlink" title="事务的传播行为"></a>事务的传播行为</h2><p>1.PROPAGATION_REQUIRED：如果当前没有事务，就创建一个新事务，如果当前存在事务，就加入该事务，该设置是最常用的设置。</p>
+<p>2.PROPAGATION_SUPPORTS：支持当前事务，如果当前存在事务，就加入该事务，如果当前不存在事务，就以非事务执行。</p>
+<p>3.PROPAGATION_MANDATORY：支持当前事务，如果当前存在事务，就加入该事务，如果当前不存在事务，就抛出异常。</p>
+<p>4.PROPAGATION_REQUIRES_NEW：创建新事务，无论当前存不存在事务，都创建新事务。</p>
+<p>5.PROPAGATION_NOT_SUPPORTED：以非事务方式执行操作，如果当前存在事务，就把当前事务挂起。</p>
+<p>6.PROPAGATION_NEVER：以非事务方式执行，如果当前存在事务，则抛出异常。</p>
+<p>7.PROPAGATION_NESTED：如果当前存在事务，则在嵌套事务内执行。如果当前没有事务，则执行与PROPAGATION_REQUIRED类似的操作。</p>
+<h2 id="sql编写以及优化（必问）"><a href="#sql编写以及优化（必问）" class="headerlink" title="sql编写以及优化（必问）"></a>sql编写以及优化（必问）</h2><p>参考：</p>
+<p>[<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq/_38789941/article/details/83744271][https_blog.csdn.net_qq_38789941_article_details_83744271]">https://blog.csdn.net/qq\_38789941/article/details/83744271][https_blog.csdn.net_qq_38789941_article_details_83744271]</a></p>
+<h1 id="Part-5-其它问题"><a href="#Part-5-其它问题" class="headerlink" title="Part 5 其它问题"></a>Part 5 其它问题</h1><h2 id="怎么设计一个高并发系统（比如100万人同时抢票）"><a href="#怎么设计一个高并发系统（比如100万人同时抢票）" class="headerlink" title="怎么设计一个高并发系统（比如100万人同时抢票）"></a>怎么设计一个高并发系统（比如100万人同时抢票）</h2><p>[<a target="_blank" rel="noopener" href="https://blog.csdn.net/java/_leejin/article/details/98096274][https_blog.csdn.net_java_leejin_article_details_98096274]">https://blog.csdn.net/java\_leejin/article/details/98096274][https_blog.csdn.net_java_leejin_article_details_98096274]</a></p>
+<h2 id="Spring-cloud（有些公司的项目用不到这个）"><a href="#Spring-cloud（有些公司的项目用不到这个）" class="headerlink" title="Spring cloud（有些公司的项目用不到这个）"></a>Spring cloud（有些公司的项目用不到这个）</h2><p>面试题集锦：</p>
+<p>[<a target="_blank" rel="noopener" href="https://blog.csdn.net/hjq/_ku/article/details/89504229][https_blog.csdn.net_hjq_ku_article_details_89504229]">https://blog.csdn.net/hjq\_ku/article/details/89504229][https_blog.csdn.net_hjq_ku_article_details_89504229]</a></p>
+<p>[<a target="_blank" rel="noopener" href="https://blog.csdn.net/oldshaui/article/details/90675149][https_blog.csdn.net_oldshaui_article_details_90675149]">https://blog.csdn.net/oldshaui/article/details/90675149][https_blog.csdn.net_oldshaui_article_details_90675149]</a></p>
+<p><img src="http://markdown.liangtengyu.com:9999/images//image_63a70387.png" alt="image_63a70387.png"><img src="http://markdown.liangtengyu.com:9999/images//image_4b7e356a.png" alt="image_4b7e356a.png"></p>
+<h2 id="java性能优化"><a href="#java性能优化" class="headerlink" title="java性能优化"></a>java性能优化</h2><p>[<a target="_blank" rel="noopener" href="http://www.wityx.com/post/424/_1/_1.html][http_www.wityx.com_post_424_1_1.html]">http://www.wityx.com/post/424\_1\_1.html][http_www.wityx.com_post_424_1_1.html]</a></p>
+<h2 id="java8的新特性"><a href="#java8的新特性" class="headerlink" title="java8的新特性"></a>java8的新特性</h2><p>[<a target="_blank" rel="noopener" href="https://www.cnblogs.com/onetwo/p/8526374.html][https_www.cnblogs.com_onetwo_p_8526374.html]">https://www.cnblogs.com/onetwo/p/8526374.html][https_www.cnblogs.com_onetwo_p_8526374.html]</a></p>
+<h2 id="redis相关问题"><a href="#redis相关问题" class="headerlink" title="redis相关问题"></a>redis相关问题</h2><p>[<a target="_blank" rel="noopener" href="https://www.cnblogs.com/jasontec/p/9699242.html][https_www.cnblogs.com_jasontec_p_9699242.html]">https://www.cnblogs.com/jasontec/p/9699242.html][https_www.cnblogs.com_jasontec_p_9699242.html]</a></p>
+<h2 id="linux常用命令"><a href="#linux常用命令" class="headerlink" title="linux常用命令"></a>linux常用命令</h2><p>[<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq/_26230421/article/details/98359696][https_blog.csdn.net_qq_26230421_article_details_98359696]">https://blog.csdn.net/qq\_26230421/article/details/98359696][https_blog.csdn.net_qq_26230421_article_details_98359696]</a></p>
+<p>这些技术都会的话就可以上战场了</p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">yangxiaodg</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://yangxiaodg.github.io/2022/11/07/java-zhong-gao-ji-mian-shi-ti-zong-jie/">https://yangxiaodg.github.io/2022/11/07/java-zhong-gao-ji-mian-shi-ti-zong-jie/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">yangxiaodg</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/java%E9%9D%A2%E8%AF%95/">
+                                    <span class="chip bg-color">java面试</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2022/11/07/springboot-nei-zhi-gong-ju-lei/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="SpringBoot内置工具类">
+                        
+                        <span class="card-title">SpringBoot内置工具类</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            SpringBoot内置工具类
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-11-07
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/java/" class="post-category">
+                                    java
+                                </a>
+                            
+                            <a href="/categories/java/spring/" class="post-category">
+                                    spring
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E5%B7%A5%E5%85%B7%E8%BD%AE%E5%AD%90/">
+                        <span class="chip bg-color">工具轮子</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2022/11/04/concurrenthashmap-shi-ru-he-bao-zheng-xian-cheng-an-quan/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="ConcurrentHashMap是如何保证线程安全">
+                        
+                        <span class="card-title">ConcurrentHashMap是如何保证线程安全</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            ConcurrentHashmap并发集合框架是线程安全
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-11-04
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/java/" class="post-category">
+                                    java
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/java%E5%9F%BA%E7%A1%80/">
+                        <span class="chip bg-color">java基础</span>
+                    </a>
+                    
+                    <a href="/tags/%E6%BA%90%E7%A0%81/">
+                        <span class="chip bg-color">源码</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+
+  <!-- 是否加载使用自带的 prismjs. -->
+  <script type="text/javascript" src="/libs/prism/prism.min.js"></script>
+
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2022</span>
+            
+            <a href="/about" target="_blank">yangxiaodg</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+                &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                        class="white-color">45.4k</span>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/yangxiaodg" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:yangxiaodong@foxmail.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=894562504" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 894562504" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 白天和黑夜主题 -->
+<div class="stars-con">
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>  
+</div>
+
+<script>
+    function switchNightMode() {
+        $('<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"></div></div>').appendTo($('body')),
+        setTimeout(function () {
+            $('body').hasClass('DarkMode') 
+            ? ($('body').removeClass('DarkMode'), localStorage.setItem('isDark', '0'), $('#sum-moon-icon').removeClass("fa-sun").addClass('fa-moon')) 
+            : ($('body').addClass('DarkMode'), localStorage.setItem('isDark', '1'), $('#sum-moon-icon').addClass("fa-sun").removeClass('fa-moon')),
+            
+            setTimeout(function () {
+            $('.Cuteen_DarkSky').fadeOut(1e3, function () {
+                $(this).remove()
+            })
+            }, 2e3)
+        })
+    }
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+
+    
+
+    <!-- 雪花特效 -->
+     
+        <script type="text/javascript">
+            // 只在桌面版网页启用特效
+            var windowWidth = $(window).width();
+            if (windowWidth > 768) {
+                document.write('<script type="text/javascript" src="/libs/others/snow.js"><\/script>');
+            }
+        </script>
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
