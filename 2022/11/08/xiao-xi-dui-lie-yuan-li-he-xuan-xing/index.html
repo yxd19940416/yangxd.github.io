@@ -1,0 +1,1219 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="消息队列原理和选型, 杨晓东&amp;Blog">
+    <meta name="description" content="消息队列原理和选型">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>消息队列原理和选型 | 杨晓东&amp;Blog</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    
+
+
+    <!-- bg-cover style     -->
+
+
+
+<link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+<link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+<link rel="stylesheet" type="text/css" href="/css/matery.css">
+<link rel="stylesheet" type="text/css" href="/css/my.css">
+<link rel="stylesheet" type="text/css" href="/css/dark.css" media="none" onload="if(media!='all')media='all'">
+
+
+
+
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+    <link rel="stylesheet" href="/css/post.css">
+
+
+
+
+    
+
+
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">杨晓东&amp;Blog</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+  <li>
+    <a href="javascript:;" class="waves-effect waves-light" onclick="switchNightMode()" title="深色/浅色模式" >
+      <i id="sum-moon-icon" class="fas fa-sun" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">杨晓东&amp;Blog</div>
+        <div class="logo-desc">
+            
+            一点一滴每一天
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/yangxiaodg" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/yangxiaodg" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">消息队列原理和选型</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/mq/">
+                                <span class="chip bg-color">mq</span>
+                            </a>
+                        
+                            <a href="/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/">
+                                <span class="chip bg-color">中间件</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" class="post-category">
+                                消息队列
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2022-11-08
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2022-11-08
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    3.8k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    13 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.min.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <p><img src="/2022/11/08/xiao-xi-dui-lie-yuan-li-he-xuan-xing/image_97d0e8f2.png" alt="image_97d0e8f2.png"></p>
+<p>消息队列中间件重要吗？面试必问问题之一，你说重不重要。我有时会问同事，为啥你用 RabbitMQ，不用 Kafka，或者 RocketMQ 呢，他给我的回答 “因为公司用的就是这个，大家都这么用”，如果你去面试，直接就被 Pass，今天这篇文章，告诉你如何回答。</p>
+<p>这篇文章，我重点突出消息队列选型，弱化每种队列内部的实现细节，精华提炼，可读性更强！</p>
+<p>常用的消息队列主要这 4 种，分别为 Kafka、RabbitMQ、RocketMQ 和 ActiveMQ，主要介绍前三，不BB，上思维导图！</p>
+<p><img src="/2022/11/08/xiao-xi-dui-lie-yuan-li-he-xuan-xing/image_a36c2593.png" alt="image_a36c2593.png"></p>
+<h2 id="消息队列基础"><a href="#消息队列基础" class="headerlink" title="消息队列基础"></a>消息队列基础</h2><h3 id="什么是消息队列？"><a href="#什么是消息队列？" class="headerlink" title="什么是消息队列？"></a>什么是消息队列？</h3><p>消息队列是在消息的传输过程中保存消息的容器，用于接收消息并以文件的方式存储，一个消息队列可以被一个也可以被多个消费者消费，包含以下 3 元素：</p>
+<ul>
+<li> Producer：消息生产者，负责产生和发送消息到 Broker；</li>
+<li> Broker：消息处理中心，负责消息存储、确认、重试等，一般其中会包含多个 Queue；</li>
+<li> Consumer：消息消费者，负责从 Broker 中获取消息，并进行相应处理。</li>
+</ul>
+<p><img src="/2022/11/08/xiao-xi-dui-lie-yuan-li-he-xuan-xing/image_6d065553.png" alt="image_6d065553.png"></p>
+<h3 id="消息队列模式"><a href="#消息队列模式" class="headerlink" title="消息队列模式"></a>消息队列模式</h3><ul>
+<li> 点对点模式：多个生产者可以向同一个消息队列发送消息，一个具体的消息只能由一个消费者消费。</li>
+</ul>
+<p><img src="/2022/11/08/xiao-xi-dui-lie-yuan-li-he-xuan-xing/image_d1df2887.png" alt="image_d1df2887.png"></p>
+<ul>
+<li> 发布/订阅模式：单个消息可以被多个订阅者并发的获取和处理。</li>
+</ul>
+<p><img src="/2022/11/08/xiao-xi-dui-lie-yuan-li-he-xuan-xing/image_175157f1.png" alt="image_175157f1.png"></p>
+<h3 id="消息队列应用场景"><a href="#消息队列应用场景" class="headerlink" title="消息队列应用场景"></a>消息队列应用场景</h3><ul>
+<li> 应用解耦 ：消息队列减少了服务之间的耦合性，不同的服务可以通过消息队列进行通信，而不用关心彼此的实现细节。</li>
+<li> 异步处理 ：消息队列本身是异步的，它允许接收者在消息发送很长时间后再取回消息。</li>
+<li> 流量削锋 ：当上下游系统处理能力存在差距的时候，利用消息队列做一个通用的”载体”，在下游有能力处理的时候，再进行分发与处理。</li>
+<li> 日志处理 ：日志处理是指将消息队列用在日志处理中，比如 Kafka 的应用，解决大量日志传输的问题。</li>
+<li> 消息通讯 ：消息队列一般都内置了高效的通信机制，因此也可以用在纯的消息通讯，比如实现点对点消息队列，或者聊天室等。</li>
+<li> 消息广播 ：如果没有消息队列，每当一个新的业务方接入，我们都要接入一次新接口。有了消息队列，我们只需要关心消息是否送达了队列，至于谁希望订阅，是下游的事情，无疑极大地减少了开发和联调的工作量。</li>
+</ul>
+<h2 id="常用消息队列"><a href="#常用消息队列" class="headerlink" title="常用消息队列"></a>常用消息队列</h2><p>由于官方社区现在对 ActiveMQ 5.x 维护越来越少，较少在大规模吞吐的场景中使用，所以我们主要讲解 Kafka、RabbitMQ 和 RocketMQ。</p>
+<h3 id="Kafka"><a href="#Kafka" class="headerlink" title="Kafka"></a>Kafka</h3><p>Apache Kafka 最初由 LinkedIn 公司基于独特的设计实现为一个分布式的提交日志系统，之后成为 Apache 项目的一部分，号称大数据的杀手锏，在数据采集、传输、存储的过程中发挥着举足轻重的作用。</p>
+<p>它是一个分布式的，支持多分区、多副本，基于 Zookeeper 的分布式消息流平台 ，它同时也是一款开源的基于发布订阅模式的消息引擎系统。</p>
+<h4 id="重要概念"><a href="#重要概念" class="headerlink" title="重要概念"></a>重要概念</h4><ul>
+<li> 主题（Topic） ：消息的种类称为主题，可以说一个主题代表了一类消息，相当于是对消息进行分类，主题就像是数据库中的表。</li>
+<li> 分区（partition） ：主题可以被分为若干个分区，同一个主题中的分区可以不在一个机器上，有可能会部署在多个机器上，由此来实现 kafka 的伸缩性。</li>
+<li> 批次 ：为了提高效率， 消息会分批次写入 Kafka，批次就代指的是一组消息。</li>
+<li> 消费者群组（Consumer Group） ：消费者群组指的就是由一个或多个消费者组成的群体。</li>
+<li> Broker : 一个独立的 Kafka 服务器就被称为 broker，broker 接收来自生产者的消息，为消息设置偏移量，并提交消息到磁盘保存。</li>
+<li> Broker 集群 ：broker 集群由一个或多个 broker 组成。</li>
+<li> 重平衡（Rebalance） ：消费者组内某个消费者实例挂掉后，其他消费者实例自动重新分配订阅主题分区的过程。</li>
+</ul>
+<h4 id="Kafka-架构"><a href="#Kafka-架构" class="headerlink" title="Kafka 架构"></a>Kafka 架构</h4><p>一个典型的 Kafka 集群中包含 Producer、broker、Consumer Group、Zookeeper 集群。</p>
+<p>Kafka 通过 Zookeeper 管理集群配置，选举 leader，以及在 Consumer Group 发生变化时进行 rebalance。Producer 使用 push 模式将消息发布到 broker，Consumer 使用 pull 模式从 broker 订阅并消费消息。</p>
+<p><img src="/2022/11/08/xiao-xi-dui-lie-yuan-li-he-xuan-xing/image_0325f376.png" alt="image_0325f376.png"></p>
+<h4 id="Kafka-工作原理"><a href="#Kafka-工作原理" class="headerlink" title="Kafka 工作原理"></a>Kafka 工作原理</h4><p>消息经过序列化后，通过不同的分区策略，找到对应的分区。</p>
+<p>相同主题和分区的消息，会被存放在同一个批次里 ，然后由一个独立的线程负责把它们发到 Kafka Broker 上。</p>
+<p><img src="/2022/11/08/xiao-xi-dui-lie-yuan-li-he-xuan-xing/image_ae0ce795.png" alt="image_ae0ce795.png"></p>
+<p>分区的策略包括顺序轮询、随机轮询和 key hash 这 3 种方式，那什么是分区呢？</p>
+<p>分区是 Kafka 读写数据的最小粒度，比如主题 A 有 15 条消息，有 5 个分区，如果采用顺序轮询的方式，15 条消息会顺序分配给这 5 个分区，后续消费的时候，也是按照分区粒度消费。</p>
+<p><img src="/2022/11/08/xiao-xi-dui-lie-yuan-li-he-xuan-xing/image_0eb903df.png" alt="image_0eb903df.png"></p>
+<p>由于分区可以部署在多个不同的机器上，所以可以通过分区实现 Kafka 的伸缩性，比如主题 A 的 5 个分区，分别部署在 5 台机器上，如果下线一台，分区就变为 4。</p>
+<p>Kafka 消费是通过消费群组完成，同一个消费者群组，一个消费者可以消费多个分区，但是一个分区，只能被一个消费者消费。</p>
+<p><img src="/2022/11/08/xiao-xi-dui-lie-yuan-li-he-xuan-xing/image_c57014d0.png" alt="image_c57014d0.png"></p>
+<p>如果消费者增加，会触发 Rebalance，也就是分区和消费者需要重新配对 。</p>
+<p>不同的消费群组互不干涉 ，比如下图的 2 个消费群组，可以分别消费这 4 个分区的消息，互不影响。</p>
+<p><img src="/2022/11/08/xiao-xi-dui-lie-yuan-li-he-xuan-xing/image_14d8f72e.png" alt="image_14d8f72e.png"></p>
+<h3 id="RocketMQ"><a href="#RocketMQ" class="headerlink" title="RocketMQ"></a>RocketMQ</h3><p>RocketMQ 是阿里开源的消息中间件，它是纯 Java 开发，具有高性能、高可靠、高实时、适合大规模分布式系统应用的特点。</p>
+<p>RocketMQ 思路起源于 Kafka，但并不是 Kafka 的一个 Copy，它对消息的可靠传输及事务性做了优化 ，目前在阿里集团被广泛应用于交易、充值、流计算、消息推送、日志流式处理、binlog 分发等场景。</p>
+<h4 id="重要概念-1"><a href="#重要概念-1" class="headerlink" title="重要概念"></a>重要概念</h4><ul>
+<li> Name 服务器（NameServer） ：充当注册中心，类似 Kafka 中的 Zookeeper。</li>
+<li> Broker : 一个独立的 RocketMQ 服务器就被称为 broker，broker 接收来自生产者的消息，为消息设置偏移量。</li>
+<li> 主题（Topic） ：消息的第一级类型，一条消息必须有一个 Topic。</li>
+<li> 子主题（Tag） ：消息的第二级类型，同一业务模块不同目的的消息就可以用相同 Topic 和不同的 Tag 来标识。</li>
+<li> 分组（Group） ：一个组可以订阅多个 Topic，包括生产者组（Producer Group）和消费者组（Consumer Group）。</li>
+<li> 队列（Queue） ：可以类比 Kafka 的分区 Partition。</li>
+</ul>
+<h4 id="RocketMQ-工作原理"><a href="#RocketMQ-工作原理" class="headerlink" title="RocketMQ 工作原理"></a>RocketMQ 工作原理</h4><p>RockerMQ 中的消息模型就是按照主题模型所实现的，包括 Producer Group、Topic、Consumer Group 三个角色。</p>
+<p>为了提高并发能力，一个 Topic 包含多个 Queue ，生产者组根据主题将消息放入对应的 Topic，下图是采用轮询的方式找到里面的 Queue。</p>
+<p>RockerMQ 中的消费群组和 Queue，可以类比 Kafka 中的消费群组和 Partition：不同的消费者组互不干扰，一个 Queue 只能被一个消费者消费，一个消费者可以消费多个 Queue。</p>
+<p>消费 Queue 的过程中，通过偏移量记录消费的位置。</p>
+<p><img src="/2022/11/08/xiao-xi-dui-lie-yuan-li-he-xuan-xing/image_de577e1c.png" alt="image_de577e1c.png"></p>
+<h4 id="RocketMQ-架构"><a href="#RocketMQ-架构" class="headerlink" title="RocketMQ 架构"></a>RocketMQ 架构</h4><p>RocketMQ 技术架构中有四大角色 NameServer、Broker、Producer 和 Consumer，下面主要介绍 Broker。</p>
+<p>Broker 用于存放 Queue，一个 Broker 可以配置多个 Topic，一个 Topic 中存在多个 Queue。</p>
+<p>如果某个 Topic 消息量很大，应该给它多配置几个 Queue，并且尽量多分布在不同 broker 上，以减轻某个 broker 的压力。Topic 消息量都比较均匀的情况下，如果某个 broker 上的队列越多，则该 broker 压力越大。</p>
+<p><img src="/2022/11/08/xiao-xi-dui-lie-yuan-li-he-xuan-xing/image_9ea86f58.png" alt="image_9ea86f58.png"></p>
+<p>简单提一下，Broker 通过集群部署，并且提供了 master/slave 的结构，slave 定时从 master 同步数据（同步刷盘或者异步刷盘），如果 master 宕机，则 slave 提供消费服务，但是不能写入消息。</p>
+<p>看到这里，大家应该可以发现，RocketMQ 的设计和 Kafka 真的很像！</p>
+<h3 id="RabbitMQ"><a href="#RabbitMQ" class="headerlink" title="RabbitMQ"></a>RabbitMQ</h3><p>RabbitMQ 2007 年发布，是使用 Erlang 语言开发的开源消息队列系统，基于 AMQP 协议来实现。</p>
+<p>AMQP 的主要特征是面向消息、队列、路由、可靠性、安全。AMQP 协议更多用在企业系统内，对数据一致性、稳定性和可靠性要求很高的场景，对性能和吞吐量的要求还在其次。</p>
+<h4 id="重要概念-2"><a href="#重要概念-2" class="headerlink" title="重要概念"></a>重要概念</h4><ul>
+<li> 信道（Channel） ：消息读写等操作在信道中进行，客户端可以建立多个信道，每个信道代表一个会话任务。</li>
+<li> 交换器（Exchange） ：接收消息，按照路由规则将消息路由到一个或者多个队列；如果路由不到，或者返回给生产者，或者直接丢弃。</li>
+<li> 路由键（RoutingKey） ：生产者将消息发送给交换器的时候，会发送一个 RoutingKey，用来指定路由规则，这样交换器就知道把消息发送到哪个队列。</li>
+<li> 绑定（Binding） ：交换器和消息队列之间的虚拟连接，绑定中可以包含一个或者多个 RoutingKey。</li>
+</ul>
+<h4 id="RabbitMQ-工作原理"><a href="#RabbitMQ-工作原理" class="headerlink" title="RabbitMQ 工作原理"></a>RabbitMQ 工作原理</h4><p>AMQP 协议模型由三部分组成：生产者、消费者和服务端，执行流程如下：</p>
+<ol>
+<li> 生产者是连接到 Server，建立一个连接，开启一个信道。</li>
+<li> 生产者声明交换器和队列，设置相关属性，并通过路由键将交换器和队列进行绑定。</li>
+<li> 消费者也需要进行建立连接，开启信道等操作，便于接收消息。</li>
+<li> 生产者发送消息，发送到服务端中的虚拟主机。</li>
+<li> 虚拟主机中的交换器根据路由键选择路由规则，发送到不同的消息队列中。</li>
+<li> 订阅了消息队列的消费者就可以获取到消息，进行消费。</li>
+</ol>
+<p><img src="/2022/11/08/xiao-xi-dui-lie-yuan-li-he-xuan-xing/image_ea5d47d1.png" alt="image_ea5d47d1.png"></p>
+<h4 id="常用交换器"><a href="#常用交换器" class="headerlink" title="常用交换器"></a>常用交换器</h4><p>RabbitMQ 常用的交换器类型有 direct、topic、fanout、headers 四种。</p>
+<p>具体的使用方法，可以参考官网：</p>
+<ul>
+<li> 官网入口：<a target="_blank" rel="noopener" href="https://www.rabbitmq.com/getstarted.html">https://www.rabbitmq.com/getstarted.html</a></li>
+</ul>
+<p><img src="/2022/11/08/xiao-xi-dui-lie-yuan-li-he-xuan-xing/image_8b2ddfc9.png" alt="image_8b2ddfc9.png"></p>
+<h2 id="消息队列对比-amp-选型"><a href="#消息队列对比-amp-选型" class="headerlink" title="消息队列对比&amp;选型"></a>消息队列对比&amp;选型</h2><p><img src="/2022/11/08/xiao-xi-dui-lie-yuan-li-he-xuan-xing/image_743e1430.png" alt="image_743e1430.png"></p>
+<h3 id="消息队列对比"><a href="#消息队列对比" class="headerlink" title="消息队列对比"></a>消息队列对比</h3><h4 id="Kafka-1"><a href="#Kafka-1" class="headerlink" title="Kafka"></a>Kafka</h4><p>优点：</p>
+<ul>
+<li> 高吞吐、低延迟 ：Kafka 最大的特点就是收发消息非常快，Kafka 每秒可以处理几十万条消息，它的最低延迟只有几毫秒；</li>
+<li> 高伸缩性 ：每个主题（topic）包含多个分区（partition），主题中的分区可以分布在不同的主机（broker）中；</li>
+<li> 高稳定性 ：Kafka 是分布式的，一个数据多个副本，某个节点宕机，Kafka 集群能够正常工作；</li>
+<li> 持久性、可靠性、可回溯 ：Kafka 能够允许数据的持久化存储，消息被持久化到磁盘，并支持数据备份防止数据丢失，支持消息回溯；</li>
+<li> 消息有序：通过控制能够保证所有消息被消费且仅被消费一次；</li>
+<li> 有优秀的第三方 Kafka Web 管理界面 Kafka-Manager，在日志领域比较成熟，被多家公司和多个开源项目使用。</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li> Kafka 单机超过 64 个队列/分区，Load 会发生明显的飙高现象，队列越多，load 越高，发送消息响应时间变长；</li>
+<li> 不支持消息路由，不支持延迟发送，不支持消息重试；</li>
+<li> 社区更新较慢。</li>
+</ul>
+<h4 id="RocketMQ-1"><a href="#RocketMQ-1" class="headerlink" title="RocketMQ"></a>RocketMQ</h4><p>优点：</p>
+<ul>
+<li> 高吞吐 ：借鉴 Kafka 的设计，单一队列百万消息的堆积能力；</li>
+<li> 高伸缩性 ：灵活的分布式横向扩展部署架构，整体架构其实和 kafka 很像；</li>
+<li> 高容错性 ：通过ACK机制，保证消息一定能正常消费；</li>
+<li> 持久化、可回溯 ：消息可以持久化到磁盘中，支持消息回溯；</li>
+<li> 消息有序：在一个队列中可靠的先进先出（FIFO）和严格的顺序传递；</li>
+<li> 支持发布/订阅和点对点消息模型，支持拉、推两种消息模式；</li>
+<li> 提供 docker 镜像用于隔离测试和云集群部署，提供配置、指标和监控等功能丰富的 Dashboard。</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li> 不支持消息路由， 支持的客户端语言不多，目前是 java 及 c++，其中 c++ 不成熟 ；</li>
+<li> 部分支持消息有序：需要将同一类的消息 hash 到同一个队列 Queue 中，才能支持消息的顺序，如果同一类消息散落到不同的 Queue中，就不能支持消息的顺序。</li>
+<li> 社区活跃度一般。</li>
+</ul>
+<h4 id="RabbitMQ-1"><a href="#RabbitMQ-1" class="headerlink" title="RabbitMQ"></a>RabbitMQ</h4><p>优点：</p>
+<ul>
+<li> 支持几乎所有最受欢迎的编程语言 ：Java，C，C ++，C＃，Ruby，Perl，Python，PHP等等；</li>
+<li> 支持消息路由 ：RabbitMQ 可以通过不同的交换器支持不同种类的消息路由；</li>
+<li> 消息时序 ：通过延时队列，可以指定消息的延时时间，过期时间TTL等；</li>
+<li> 支持容错处理：通过交付重试和死信交换器（DLX）来处理消息处理故障；</li>
+<li> 提供了一个易用的用户界面，使得用户可以监控和管理消息 Broker；</li>
+<li> 社区活跃度高。</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li> Erlang 开发，很难去看懂源码，不利于做二次开发和维护 ，基本只能依赖于开源社区的快速维护和修复 bug；</li>
+<li> RabbitMQ 吞吐量会低一些 ，这是因为他做的实现机制比较重；</li>
+<li> 不支持消息有序、持久化不好、不支持消息回溯、伸缩性一般。</li>
+</ul>
+<h3 id="消息队列选型"><a href="#消息队列选型" class="headerlink" title="消息队列选型"></a>消息队列选型</h3><ul>
+<li> Kafka：追求高吞吐量，一开始的目的就是用于日志收集和传输， 适合产生大量数据的互联网服务的数据收集业务 ，大型公司建议可以选用， 如果有日志采集功能，肯定是首选 kafka。</li>
+<li> RocketMQ： 天生为金融互联网领域而生，对于可靠性要求很高的场景 ，尤其是电商里面的订单扣款，以及业务削峰，在大量交易涌入时，后端可能无法及时处理的情况。RocketMQ 在稳定性上可能更值得信赖，这些业务场景在阿里双 11 已经经历了多次考验， 如果你的业务有上述并发场景，建议可以选择 RocketMQ。</li>
+<li> RabbitMQ：结合 erlang 语言本身的并发优势，性能较好，社区活跃度也比较高，但是不利于做二次开发和维护，不过 RabbitMQ 的社区十分活跃，可以解决开发过程中遇到的 bug。 如果你的数据量没有那么大，小公司优先选择功能比较完备的 RabbitMQ。</li>
+<li> ActiveMQ：官方社区现在对 ActiveMQ 5.x 维护越来越少， 较少在大规模吞吐的场景中使用。</li>
+</ul>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">yangxiaodg</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://yangxiaodg.github.io/2022/11/08/xiao-xi-dui-lie-yuan-li-he-xuan-xing/">https://yangxiaodg.github.io/2022/11/08/xiao-xi-dui-lie-yuan-li-he-xuan-xing/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">yangxiaodg</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/mq/">
+                                    <span class="chip bg-color">mq</span>
+                                </a>
+                            
+                                <a href="/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/">
+                                    <span class="chip bg-color">中间件</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2022/11/08/xiao-xi-dui-lie-yuan-li-he-xuan-xing/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="消息队列原理和选型">
+                        
+                        <span class="card-title">消息队列原理和选型</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            消息队列原理和选型
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-11-08
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" class="post-category">
+                                    消息队列
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/mq/">
+                        <span class="chip bg-color">mq</span>
+                    </a>
+                    
+                    <a href="/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/">
+                        <span class="chip bg-color">中间件</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2022/11/08/chang-jian-dai-ma-chong-gou-ji-qiao/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="常见代码重构技巧">
+                        
+                        <span class="card-title">常见代码重构技巧</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            常见代码重构技巧
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-11-08
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/java/" class="post-category">
+                                    java
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E6%8A%80%E5%B7%A7/">
+                        <span class="chip bg-color">技巧</span>
+                    </a>
+                    
+                    <a href="/tags/%E9%87%8D%E6%9E%84/">
+                        <span class="chip bg-color">重构</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+
+  <!-- 是否加载使用自带的 prismjs. -->
+  <script type="text/javascript" src="/libs/prism/prism.min.js"></script>
+
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2022</span>
+            
+            <a href="/about" target="_blank">yangxiaodg</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+                &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                        class="white-color">61.8k</span>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/yangxiaodg" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:yangxiaodong@foxmail.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=894562504" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 894562504" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 白天和黑夜主题 -->
+<div class="stars-con">
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>  
+</div>
+
+<script>
+    function switchNightMode() {
+        $('<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"></div></div>').appendTo($('body')),
+        setTimeout(function () {
+            $('body').hasClass('DarkMode') 
+            ? ($('body').removeClass('DarkMode'), localStorage.setItem('isDark', '0'), $('#sum-moon-icon').removeClass("fa-sun").addClass('fa-moon')) 
+            : ($('body').addClass('DarkMode'), localStorage.setItem('isDark', '1'), $('#sum-moon-icon').addClass("fa-sun").removeClass('fa-moon')),
+            
+            setTimeout(function () {
+            $('.Cuteen_DarkSky').fadeOut(1e3, function () {
+                $(this).remove()
+            })
+            }, 2e3)
+        })
+    }
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+
+    
+
+    <!-- 雪花特效 -->
+     
+        <script type="text/javascript">
+            // 只在桌面版网页启用特效
+            var windowWidth = $(window).width();
+            if (windowWidth > 768) {
+                document.write('<script type="text/javascript" src="/libs/others/snow.js"><\/script>');
+            }
+        </script>
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
