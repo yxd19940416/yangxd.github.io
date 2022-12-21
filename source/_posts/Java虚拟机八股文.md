@@ -10,6 +10,7 @@ summary: 程序计数器、Java 虚拟机栈、本地方法栈。
 tags:
     - java虚拟机
     - 八股文
+    - java面试
 categories:
     - java
 ---

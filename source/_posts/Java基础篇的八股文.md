@@ -10,6 +10,7 @@ summary: java语言具有哪些特点？
 tags:
     - java基础
     - 八股文
+    - java面试
 categories:
     - java
 ---

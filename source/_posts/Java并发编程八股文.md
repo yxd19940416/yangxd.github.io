@@ -10,6 +10,7 @@ summary: 保证单线程程序的执行结果不变
 tags:
     - 并发编程
     - 八股文
+    - java面试
 categories:
     - java
 ---
