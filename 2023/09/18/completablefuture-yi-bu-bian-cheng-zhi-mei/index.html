@@ -434,7 +434,7 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p><img src="/2023/09/18/completablefuture-yi-bu-bian-cheng-zhi-mei/pic_b12b5e92-20230918110820845.jpeg" alt="pic_b12b5e92.png"></p>
+                <p><img src="/2023/09/18/completablefuture-yi-bu-bian-cheng-zhi-mei/pic_b12b5e92-20230918111026342.jpeg" alt="pic_b12b5e92.png"></p>
 <h2 id="一个示例回顾Future"><a href="#一个示例回顾Future" class="headerlink" title="一个示例回顾Future"></a>一个示例回顾Future</h2><p>一些业务场景我们需要使用多线程异步执行任务，加快任务执行速度。</p>
 <p>JDK5新增了<code>Future</code>接口，用于描述一个异步计算的结果。</p>
 <p>虽然 Future 以及相关使用方法提供了异步执行任务的能力，但是对于结果的获取却是很不方便，我们必须使用<code>Future.get()</code>的方式阻塞调用线程，或者使用轮询方式判断 <code>Future.isDone</code> 任务是否结束，再获取结果。</p>
@@ -600,7 +600,7 @@
 <li> join方法获取结果方法里不会抛异常，但是执行结果会抛异常，抛出的异常为<code>CompletionException</code></li>
 <li> get方法获取结果方法里将抛出异常，执行结果抛出的异常为<code>ExecutionException</code></li>
 </ul>
-<h2 id="异步回调方法"><a href="#异步回调方法" class="headerlink" title="异步回调方法"></a>异步回调方法</h2><p><img src="/2023/09/18/completablefuture-yi-bu-bian-cheng-zhi-mei/pic_995da614-20230918110820844.jpeg" alt="pic_995da614.png"></p>
+<h2 id="异步回调方法"><a href="#异步回调方法" class="headerlink" title="异步回调方法"></a>异步回调方法</h2><p><img src="/2023/09/18/completablefuture-yi-bu-bian-cheng-zhi-mei/pic_995da614-20230918111026345.jpeg" alt="pic_995da614.png"></p>
 <h4 id="1、thenRun-thenRunAsync"><a href="#1、thenRun-thenRunAsync" class="headerlink" title="1、thenRun/thenRunAsync"></a>1、thenRun/thenRunAsync</h4><p>通俗点讲就是，「做完第一个任务后，再做第二个任务,第二个任务也没有返回值」。</p>
 <p>示例</p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Test</span>  
@@ -762,7 +762,7 @@ whenComplete throwable is <span class="token class-name"><span class="token name
 exceptionally中异常：<span class="token class-name"><span class="token namespace">java<span class="token punctuation">.</span>lang<span class="token punctuation">.</span></span>RuntimeException</span><span class="token operator">:</span> 出错了  
 最终返回的结果 <span class="token operator">=</span> <span class="token number">0.0</span>  <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h2 id="多任务组合回调"><a href="#多任务组合回调" class="headerlink" title="多任务组合回调"></a>多任务组合回调</h2><p><img src="/2023/09/18/completablefuture-yi-bu-bian-cheng-zhi-mei/pic_487d627c-20230918110820845.jpeg" alt="pic_487d627c.png"></p>
+<h2 id="多任务组合回调"><a href="#多任务组合回调" class="headerlink" title="多任务组合回调"></a>多任务组合回调</h2><p><img src="/2023/09/18/completablefuture-yi-bu-bian-cheng-zhi-mei/pic_487d627c-20230918111026342.jpeg" alt="pic_487d627c.png"></p>
 <h4 id="1、AND组合关系"><a href="#1、AND组合关系" class="headerlink" title="1、AND组合关系"></a>1、AND组合关系</h4><p><code>thenCombine</code> / <code>thenAcceptBoth</code> / <code>runAfterBoth</code>都表示：「当任务一和任务二都完成再执行任务三」。</p>
 <p>区别在于：</p>
 <ul>
@@ -956,7 +956,7 @@ exceptionally中异常：<span class="token class-name"><span class="token names
     <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"完成的任务的结果："</span> <span class="token operator">+</span> o<span class="token punctuation">)</span><span class="token punctuation">;</span>  
 <span class="token punctuation">&#125;</span>  <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h2 id="CompletableFuture使用有哪些注意点"><a href="#CompletableFuture使用有哪些注意点" class="headerlink" title="CompletableFuture使用有哪些注意点"></a>CompletableFuture使用有哪些注意点</h2><p><img src="/2023/09/18/completablefuture-yi-bu-bian-cheng-zhi-mei/pic_e48a28a5-20230918110820848.jpeg" alt="pic_e48a28a5.png"></p>
+<h2 id="CompletableFuture使用有哪些注意点"><a href="#CompletableFuture使用有哪些注意点" class="headerlink" title="CompletableFuture使用有哪些注意点"></a>CompletableFuture使用有哪些注意点</h2><p><img src="/2023/09/18/completablefuture-yi-bu-bian-cheng-zhi-mei/pic_e48a28a5-20230918111026344.jpeg" alt="pic_e48a28a5.png"></p>
 <p><code>CompletableFuture</code> 使我们的异步编程更加便利的、代码更加优雅的同时，我们也要关注下它，使用的一些注意点。</p>
 <h4 id="1、Future需要获取返回值，才能获取异常信息"><a href="#1、Future需要获取返回值，才能获取异常信息" class="headerlink" title="1、Future需要获取返回值，才能获取异常信息"></a>1、Future需要获取返回值，才能获取异常信息</h4><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Test</span>  
 <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">testWhenCompleteExceptionally</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>  
